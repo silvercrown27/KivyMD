@@ -1,0 +1,47 @@
+<MessageScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        md_bg_color: app.theme_cls.bg_normal
+        MDTopAppBar:
+            id: logoToolBar
+            height: "50dp"
+            title: "Whatsapp"
+            right_action_items: [['dots-vertical', lambda x:x]]
+            margin: 0
+
+        ScrollView:
+            do_scroll_y: True
+            effect_cls: "ScrollEffect"
+            bar_width: 0
+            MDBoxLayout:
+                adaptive_height: True
+                orientation: "vertical"
+                md_bg_color: app.theme_cls.primary_color
+                spacing: "20dp"
+                MDBoxLayout:
+                    height: "60dp"
+                    size_hint_y: None
+                    ScrollView:
+                        do_scroll_y: False
+                        bar_Width: 0
+                        MDBoxLayout:
+                            id: story_layout
+                            adaptive_width: True
+                            spacing: "10dp"
+                            padding: [10, 0, 0, 0]
+                            StoryWithIcon:
+
+                            StoryWithImage:
+                                text: "Username"
+                                source: "img/story.jfif"
+
+
+                MDBoxLayout:
+                    orientation: "vertical"
+                    md_bg_color: app.theme_cls.bg_normal
+                    adaptive_height: True
+                    radius: [20, 20, 0, 0]
+                    padding: [0, 0, 0, 40]
+                    MDList:
+                        id: chatTimeLine
+                        spacing: "10dp"
