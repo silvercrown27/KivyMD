@@ -1,113 +1,115 @@
 <LoginScreen>:
     MDBoxLayout:
-        orientation: "vertical"
         md_bg_color: app.theme_cls.bg_normal
         MDBoxLayout:
-            radius: [0, 0, 15, 15]
+            orientation: "vertical"
             md_bg_color: app.theme_cls.primary_color
-            MDLabel:
-                bold: True
-                text: "Login"
-                font_style: "H3"
-                padding: 95, 10
-                font_name: "../fonts/pacifico/Pacifico.ttf"
-                pos_hint: {"center_x": .5}
+            radius: [20, 20, 20, 20]
+            padding: 5, 5
+            MDBoxLayout:
+                MDLabel:
+                    bold: True
+                    text: "Login"
+                    font_style: "H3"
+                    padding: 95, 10
+                    font_name: "../fonts/pacifico/Pacifico.ttf"
+                    pos_hint: {"center_x": .5}
 
-        MDBoxLayout:
-            orientation: "vertical"
-            MDLabel:
-                bold: True
-                text: "Email"
-                padding: 20, 20
-                font_style: "Caption"
-                pos_hint: {"center_x": .5, "center_y": .5}
-            MDTextField:
-                width: "300dp"
-                required: True
-                mode: "round"
-                size_hint_x: None
-                icon_left: "email"
-                max_text_length: 25
-                padding: [0, 50, 0, 20]
-                hint_text: "Enter your email"
-                pos_hint: {"center_x": .5, "center_y": .5}
-
-            MDLabel:
-                bold: True
-                padding: 20, 25
-                text: "Password"
-                font_style: "Caption"
-                pos_hint: {"center_x": .5, "center_y": .5}
-            PasswordTextField:
-                password: True
-                width: "300dp"
-                required: True
-                size_hint_x: None
-                pos_hint: {"center_x": .5, "center_y": .5}
-
-        MDBoxLayout:
-            orientation: "horizontal"
-            padding: [10, 0, 10, 10]
-            MDSwitch:
-                track_color_disabled: "lightgrey"
-                font_style: "Overline"
-                pos_hint: {'center_x': .5, 'center_y': .5}
-            MDLabel:
-                text: "Remember me"
-                padding: "14dp", "4dp"
-                font_style: "Overline"
-            MDTextButton:
-                text: "forgot password"
-                font_style: "Overline"
-                custom_color: "white"
-                pos_hint: {"center_x": .5, "center_y": .5}
-
-        MDBoxLayout:
-            orientation: "vertical"
-            padding: 0, 10
-            MDRoundFlatButton:
-                text: "Sign In"
-                padding: 110, 10
-                text_color: "black"
-                md_bg_color: app.theme_cls.primary_color
-                pos_hint: {"center_x": .5, "center_y": .5}
-            MDLabel:
-                text: "Don't have an account..."
-                text_align: "center"
-                padding: 90, 10
-                font_style: "Overline"
-            MDRoundFlatButton:
-                text: "Create an account"
-                padding: 80, 10
-                text_color: "black"
-                md_bg_color: app.theme_cls.primary_color
-                pos_hint: {"center_x": .5, "center_y": .5}
-
-        MDBoxLayout:
-            orientation: "vertical"
-            width: "200dp"
-            halign: "center"
             MDBoxLayout:
                 orientation: "vertical"
-                padding: dp(10)
                 MDLabel:
-                    text: "OR"
+                    bold: True
+                    text: "Email"
+                    padding: 20, 20
                     font_style: "Caption"
-                    padding: [self.width - self.width/1.90, 0]
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                MDTextField:
+                    width: "300dp"
+                    required: True
+                    mode: "round"
+                    size_hint_x: None
+                    icon_left: "email"
+                    max_text_length: 25
+                    padding: [0, 50, 0, 20]
+                    hint_text: "Enter your email"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+
                 MDLabel:
-                    text: "Sign In with"
+                    bold: True
+                    padding: 20, 25
+                    text: "Password"
                     font_style: "Caption"
-                    padding: [self.width - self.width/1.65, 0]
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                PasswordTextField:
+                    password: True
+                    width: "300dp"
+                    required: True
+                    size_hint_x: None
+                    pos_hint: {"center_x": .5, "center_y": .5}
+
             MDBoxLayout:
                 orientation: "horizontal"
-                padding: [self.width / 4.5, self.height / 2]
-                spacing: dp(20)
-                MDIconButton:
-                    icon: "../icons/facebook-48.png"
-                MDIconButton:
-                    icon: "../icons/twitter-48.png"
-                MDIconButton:
-                    icon: "../icons/google-48.png"
+                padding: [10, 0, 10, 10]
+                MDSwitch:
+                    track_color_disabled: "lightgrey"
+                    font_style: "Overline"
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                MDLabel:
+                    text: "Remember me"
+                    padding: "14dp", "4dp"
+                    font_style: "Overline"
+                MDTextButton:
+                    text: "forgot password"
+                    font_style: "Overline"
+                    custom_color: "white"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: 0, 10
+                MDRoundFlatButton:
+                    text: "Sign In"
+                    padding: 110, 10
+                    text_color: "black"
+                    md_bg_color: app.theme_cls.primary_color
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                MDLabel:
+                    text: "Don't have an account..."
+                    text_align: "center"
+                    padding: 90, 10
+                    font_style: "Overline"
+                MDRoundFlatButton:
+                    text: "Create an account"
+                    padding: 80, 10
+                    text_color: "black"
+                    md_bg_color: app.theme_cls.primary_color
+                    pos_hint: {"center_x": .5, "center_y": .5}
+
+            MDBoxLayout:
+                orientation: "vertical"
+                width: "200dp"
+                halign: "center"
+                MDBoxLayout:
+                    orientation: "vertical"
+                    padding: dp(10)
+                    MDLabel:
+                        text: "OR"
+                        font_style: "Caption"
+                        padding: [self.width - self.width/1.90, 0]
+                    MDLabel:
+                        text: "Sign In with"
+                        font_style: "Caption"
+                        padding: [self.width - self.width/1.65, 0]
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    padding: [self.width / 4.5, self.height / 2]
+                    spacing: dp(20)
+                    MDIconButton:
+                        icon: "../icons/facebook-48.png"
+                    MDIconButton:
+                        icon: "../icons/twitter-48.png"
+                    MDIconButton:
+                        icon: "../icons/google-48.png"
 
 <PasswordTextField@MDRelativeLayout>:
     size_hint_y: None
