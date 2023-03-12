@@ -1,0 +1,68 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import Gradient kivy_gradient.Gradient
+
+Screen:
+    canvas:
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            texture: Gradient.vertical(get_color_from_hex("#8400d3"), get_color_from_hex("#301934"))
+
+    MDFloatLayout:
+        orientation: "horizontal"
+        MDBoxLayout:
+            MDNavigationRail:
+                id: nav_rail
+                anchor: "center"
+                radius: [10, 20, 20, 10]
+                md_bg_color: [0, 0, 0, 0]
+                selected_color_background: "0000FF"
+                current_selected_item: 1
+                icon_color_item_normal: app.theme_cls.bg_normal
+                text_color_item_normal: app.theme_cls.bg_normal
+
+                MDNavigationRailFabButton:
+                    icon: "home"
+                    pos_hint: {"top": .05, "center_x": .5}
+
+                MDNavigationRailFabButton:
+                    text: "Search"
+                    icon: "magnify"
+                    pos_hint: {"top": 1, "center_x": .5}
+
+                MDNavigationRailItem:
+                    text: "Music"
+                    icon: "music-circle-outline"
+
+                MDNavigationRailItem:
+                    text: "Videos"
+                    icon: "motion-play"
+
+                MDNavigationRailItem:
+                    text: "Pictures"
+                    icon: "image-filter-hdr"
+
+                MDNavigationRailItem:
+                    text: "Library"
+                    icon: "plus-box-multiple"
+
+                MDNavigationRailItem:
+                    text: "Explore"
+                    icon: "compass"
+
+                MDNavigationRailItem:
+                    text: "Settings"
+                    icon: "dots-horizontal-circle"
+
+            ScreenManager:
+                id: screen_manager
+                transition:
+                    SwapTransition(duration=.2, clearcolor=app.theme_cls.bg_dark)
+
+
+
+<MySwiper@MDSwiperItem>
+
+    FitImage:
+        source: "guitar.png"
+        radius: [20,]

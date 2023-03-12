@@ -1,7 +1,7 @@
 from kivy.lang import Builder
 from kivy.core.window import Window
 from kivy.properties import StringProperty
-from kivy.uix.screenmanager import Screen, ScreenManager, FadeTransition
+from kivy.uix.screenmanager import Screen, ScreenManager, SwapTransition
 
 from kivymd.app import MDApp
 
@@ -28,7 +28,7 @@ class MainApp(MDApp):
         screens = [
             LoginScreen(name="Login"),
         ]
-        self.wm = WindowManager(transition=FadeTransition())
+        self.wm = WindowManager(transition=SwapTransition())
 
         for screen in screens:
             self.wm.add_widget(screen)
