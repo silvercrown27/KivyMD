@@ -14,6 +14,10 @@ class WindowManager(ScreenManager):
     """"""
 
 
+class MainScreen(Screen):
+    ''''''
+
+
 class HomeScreen(Screen):
     """"""
 
@@ -27,6 +31,7 @@ class MainApp(MDApp):
         self.title = "Media Verse"
 
         screens = [
+            MainScreen(name="Root"),
             HomeScreen(name="Home")
         ]
         self.wm = WindowManager(transition=SwapTransition())
@@ -35,13 +40,6 @@ class MainApp(MDApp):
             self.wm.add_widget(screen)
 
         return self.wm
-
-    def switch_screen(
-        self, instance_navigation_rail, instance_navigation_rail_item):
-
-        self.root.ids.screen_manager.current = (
-            instance_navigation_rail_item.icon.split("-")[1].lower()
-        )
 
 
 if __name__ == "__main__":
