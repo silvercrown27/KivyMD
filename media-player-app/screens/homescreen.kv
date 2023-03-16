@@ -51,23 +51,44 @@
             MDNavigationRailItem:
                 text: "Settings"
                 icon: "dots-horizontal-circle"
-        HomeScreen:
-            MDFloatLayout:
-                orientation: "vertical"
+        MDScreen:
+            id: home_screen
+            MDScrollView:
                 MDFloatLayout:
-                    orientation: "horizontal"
-                    MDIcon:
-                        text: "resents"
-                        font_style: "H3"
-                        text_color: app.theme_cls.bg_normal
-                        icon: "history"
+                    orientation: "vertical"
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        adaptive_height: True
+                        pos_hint: {"top": .9}
+                        MDBoxLayout:
+                            orientation: "horizontal"
+                            size_hint: .9, .03
+                            pos_hint: {"top": .9}
+                            MDIcon:
+                                icon: "history"
+                            MDLabel:
+                                text: "resents"
+                                font_style: "H6"
+                        MDSwiper:
+                            size_hint: .9, .5
+                            MySwiper:
 
+                            MySwiper:
 
+                            MySwiper:
+
+                            MySwiper:
+
+                            MySwiper:
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        size_hint: .9, .4
 
 
 
 <MySwiper@MDSwiperItem>
 
     FitImage:
-        source: "guitar.png"
+        size_hint: .5, .4
+        source: "story.jfif"
         radius: [20,]
