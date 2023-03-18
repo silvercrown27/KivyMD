@@ -4,10 +4,12 @@ from kivy.core.window import Window
 from kivy.properties import StringProperty
 from kivy.uix.screenmanager import Screen, ScreenManager, SwapTransition
 
+from kivymd.uix.screen import MDScreen
 from kivymd.app import MDApp
 
-Window.size = (328, 692)
+Window.size = (328, 688)
 Builder.load_file("homescreen.kv")
+Builder.load_file("MainScreen.kv")
 
 
 class WindowManager(ScreenManager):
@@ -18,7 +20,8 @@ class MainScreen(Screen):
     ''''''
 
 
-class HomeScreen(Screen):
+
+class HomeScreen(MDScreen):
     """"""
 
 
@@ -28,7 +31,7 @@ class MainApp(MDApp):
         self.theme_cls.primary_palette = "Blue"
         self.theme_cls.accent_palette = "Blue"
         self.theme_cls.accent_hue = "700"
-        self.title = "Media Verse"
+        self.title = "Portal Play"
 
         screens = [
             MainScreen(name="Root"),

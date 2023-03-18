@@ -1,0 +1,61 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import Gradient kivy_gradient.Gradient
+
+
+<MainScreen>:
+    canvas:
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            texture: Gradient.vertical(get_color_from_hex("#05696B"), get_color_from_hex("#301934"))
+
+    MDNavigationLayout:
+
+        MDScreenManager:
+            HomeScreen:
+                MDTopAppBar:
+                    title: "Home Screen"
+                    pos_hint: {"top": 1}
+                    md_bg_color: 1, 1, 0, 0
+                    specific_text_color: "#4a4939"
+                    left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            width: dp(150)
+            radius: (0, 16, 16, 0)
+            md_bg_color: [1, 1, 0, 0.5]
+
+            MDNavigationDrawerMenu:
+                spacing: dp(40)
+                MDNavigationDrawerItem:
+                    right_text: "Music"
+                    text_right_color: "#4a4939"
+                    icon: "music-circle-outline"
+
+                MDNavigationDrawerItem:
+                    right_text: "Videos"
+                    text_right_color: "#4a4939"
+                    icon: "motion-play"
+
+                MDNavigationDrawerItem:
+                    right_text: "Pictures"
+                    text_right_color: "#4a4939"
+                    icon: "image-filter-hdr"
+
+                MDNavigationDrawerItem:
+                    right_text: "Library"
+                    text_right_color: "#4a4939"
+                    icon: "plus-box-multiple"
+
+                MDNavigationDrawerItem:
+                    right_text: "Explore"
+                    text_right_color: "#4a4939"
+                    icon: "compass"
+
+                MDNavigationDrawerItem:
+                    right_text: "Settings"
+                    text_right_color: "#4a4939"
+                    icon: "dots-horizontal-circle"
+
+

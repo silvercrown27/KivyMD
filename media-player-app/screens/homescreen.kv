@@ -1,94 +1,58 @@
-#:import get_color_from_hex kivy.utils.get_color_from_hex
-#:import Gradient kivy_gradient.Gradient
 
-<MainScreen>:
-    canvas:
-        Rectangle:
-            size: self.size
-            pos: self.pos
-            texture: Gradient.vertical(get_color_from_hex("#8400d3"), get_color_from_hex("#301934"))
+<DrawerClickableItem@MDNavigationDrawerItem>
+    focus_color: "#e7e4c0"
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    ripple_color: "#c5bdd2"
+    selected_color: "#0c6c4d"
 
+
+<DrawerLabelItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    focus_behavior: False
+    selected_color: "#4a4939"
+    _no_ripple_effect: True
+
+
+
+
+<HomeScreen>:
     MDBoxLayout:
-        MDNavigationRail:
-            id: nav_rail
-            anchor: "center"
-            radius: [10, 20, 20, 10]
-            md_bg_color: [0, 0, 0, 0]
-            selected_color_background: "0000FF"
-            current_selected_item: 1
-            icon_color_item_normal: app.theme_cls.bg_normal
-            text_color_item_normal: app.theme_cls.bg_normal
+        MDScrollView:
+            do_scroll_y: True
+            do_scroll_x: False
+            effect_cls: "ScrollEffect"
+            bar_width: 0
+            MDBoxLayout:
+                adaptive_height: True
+                orientation: "vertical"
 
-            MDNavigationRailFabButton:
-                icon: "home"
-                pos_hint: {"top": .05, "center_x": .5}
-
-            MDNavigationRailFabButton:
-                text: "Search"
-                icon: "magnify"
-                pos_hint: {"top": 1, "center_x": .5}
-
-            MDNavigationRailItem:
-                text: "Music"
-                icon: "music-circle-outline"
-
-            MDNavigationRailItem:
-                text: "Videos"
-                icon: "motion-play"
-
-            MDNavigationRailItem:
-                text: "Pictures"
-                icon: "image-filter-hdr"
-
-            MDNavigationRailItem:
-                text: "Library"
-                icon: "plus-box-multiple"
-
-            MDNavigationRailItem:
-                text: "Explore"
-                icon: "compass"
-
-            MDNavigationRailItem:
-                text: "Settings"
-                icon: "dots-horizontal-circle"
-        MDScreen:
-            id: home_screen
-            MDScrollView:
-                MDFloatLayout:
+                MDBoxLayout:
+                    adaptive_height: True
                     orientation: "vertical"
+                    spacing: dp(20)
                     MDBoxLayout:
-                        orientation: "vertical"
-                        adaptive_height: True
-                        pos_hint: {"top": .9}
-                        MDBoxLayout:
-                            orientation: "horizontal"
-                            size_hint: .9, .03
-                            pos_hint: {"top": .9}
-                            MDIcon:
-                                icon: "history"
-                            MDLabel:
-                                text: "resents"
-                                font_style: "H6"
-                        MDSwiper:
-                            size_hint: .9, .5
-                            MySwiper:
+                        radius: dp(20)
+                        height: "200dp"
+                        size_hint_y: None
+                        md_bg_color: [0, 0, 0, 0.5]
 
-                            MySwiper:
-
-                            MySwiper:
-
-                            MySwiper:
-
-                            MySwiper:
                     MDBoxLayout:
-                        orientation: "vertical"
-                        size_hint: .9, .4
+                        radius: dp(20)
+                        height: "200dp"
+                        size_hint_y: None
+                        md_bg_color: [0, 0, 0, 0.5]
 
+                    MDBoxLayout:
+                        radius: dp(20)
+                        height: "200dp"
+                        size_hint_y: None
+                        md_bg_color: [0, 0, 0, 0.5]
 
+                    MDBoxLayout:
+                        radius: dp(20)
+                        height: "200dp"
+                        size_hint_y: None
+                        md_bg_color: [0, 0, 0, 0.5]
 
-<MySwiper@MDSwiperItem>
-
-    FitImage:
-        size_hint: .5, .4
-        source: "story.jfif"
-        radius: [20,]
