@@ -13,21 +13,18 @@
 
         MDScreenManager:
             HomeScreen:
-                MDTopAppBar:
-                    title: "Home Screen"
-                    pos_hint: {"top": 1}
-                    md_bg_color: 1, 1, 0, 0
-                    specific_text_color: "#4a4939"
-                    left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
 
         MDNavigationDrawer:
             id: nav_drawer
             width: dp(150)
             radius: (0, 16, 16, 0)
+            enable_swiping: True
             md_bg_color: [1, 1, 0, 0.5]
 
             MDNavigationDrawerMenu:
                 spacing: dp(40)
+                valign: "center"
+                selected_color: None
                 MDNavigationDrawerItem:
                     right_text: "Music"
                     text_right_color: "#4a4939"
@@ -57,5 +54,4 @@
                     right_text: "Settings"
                     text_right_color: "#4a4939"
                     icon: "dots-horizontal-circle"
-
 

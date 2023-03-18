@@ -1,8 +1,9 @@
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
+from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.button import MDRaisedButton
 from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.navigationdrawer import NavigationLayout, MDNavigationDrawer
+from kivymd.uix.navigationdrawer import MDNavigationLayout, MDNavigationDrawer
 
 
 class MainScreen(MDScreen):
@@ -67,9 +68,9 @@ class NavigationDrawer(MDNavigationDrawer):
 
 class TestApp(MDApp):
     def build(self):
-        layout = NavigationLayout()
+        layout = MDNavigationLayout()
 
-        screen_manager = MDBoxLayout(orientation="vertical")
+        screen_manager = MDScreenManager()
         screen_manager.add_widget(MainScreen(name="main"))
         screen_manager.add_widget(Screen2(name="screen2"))
         screen_manager.add_widget(Screen3(name="screen3"))

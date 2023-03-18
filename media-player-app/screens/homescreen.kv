@@ -1,22 +1,4 @@
 
-<DrawerClickableItem@MDNavigationDrawerItem>
-    focus_color: "#e7e4c0"
-    text_color: "#4a4939"
-    icon_color: "#4a4939"
-    ripple_color: "#c5bdd2"
-    selected_color: "#0c6c4d"
-
-
-<DrawerLabelItem@MDNavigationDrawerItem>
-    text_color: "#4a4939"
-    icon_color: "#4a4939"
-    focus_behavior: False
-    selected_color: "#4a4939"
-    _no_ripple_effect: True
-
-
-
-
 <HomeScreen>:
     MDBoxLayout:
         MDScrollView:
@@ -36,7 +18,22 @@
                         radius: dp(20)
                         height: "200dp"
                         size_hint_y: None
+                        spacing: 20
                         md_bg_color: [0, 0, 0, 0.5]
+                        MDScrollView:
+                            do_scroll_x: True
+                            MDBoxLayout:
+                                adaptive_width: True
+                                height: "200dp"
+                                spacing: 20
+                                MDBoxLayout:
+                                    size_hint_y: None
+                                    height: "200dp"
+                                    orientation: 'vertical'
+
+                                    FitImage:
+                                        size_hint_y: 3
+                                        source: 'story.jfif'
 
                     MDBoxLayout:
                         radius: dp(20)
@@ -56,3 +53,11 @@
                         size_hint_y: None
                         md_bg_color: [0, 0, 0, 0.5]
 
+<ResentPlays@MDBoxLayout>:
+    id: resents
+    orientation: "vertical"
+    FitImage:
+        source: "story.jfif"
+    MDLabel:
+        text: "Your Plays"
+        padding: 0, 0
