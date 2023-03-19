@@ -1,4 +1,3 @@
-import kivy
 from kivy.core.window import Window
 from kivy.lang.builder import Builder
 from kivy.properties import StringProperty
@@ -8,7 +7,6 @@ from kivymd.app import MDApp
 from kivymd.uix.boxlayout import MDBoxLayout
 
 Window.size = (342, 720)
-
 Builder.load_file("story.kv")
 
 class WindowManager(ScreenManager):

@@ -9,55 +9,35 @@
             MDBoxLayout:
                 adaptive_height: True
                 orientation: "vertical"
-
-                MDBoxLayout:
-                    adaptive_height: True
-                    orientation: "vertical"
-                    spacing: dp(20)
+                spacing: "20dp"
+                padding: "20dp"
+                MDLabel:
+                    text: 'recents'
+                    font_style: 'Subtitle2'
+                ScrollView:
+                    bar_width: 0
+                    size_hint_y: None
+                    height: "180dp"
                     MDBoxLayout:
-                        radius: dp(20)
-                        height: "200dp"
-                        size_hint_y: None
-                        spacing: 20
-                        md_bg_color: [0, 0, 0, 0.5]
-                        MDScrollView:
-                            do_scroll_x: True
-                            MDBoxLayout:
-                                adaptive_width: True
-                                height: "200dp"
-                                spacing: 20
-                                MDBoxLayout:
-                                    size_hint_y: None
-                                    height: "200dp"
-                                    orientation: 'vertical'
+                        adaptive_width: True
+                        spacing: dp(20)
+                        CustomImageTile:
+                            source: "img/goodday.jpg"
+                            text: 'Favorites'
+                        CustomImageTile:
+                            source: "img/pc.jpg"
+                            text: '[size=26]Favorites[/size]\n[size=14]My Anime playlist[/size]'
+                        CustomImageTile:
+                            source: "img/vog.jpg"
+                            text: '[size=26]Favorites[/size]\n[size=14]My Anime playlist[/size]'
 
-                                    FitImage:
-                                        size_hint_y: 3
-                                        source: 'story.jfif'
 
-                    MDBoxLayout:
-                        radius: dp(20)
-                        height: "200dp"
-                        size_hint_y: None
-                        md_bg_color: [0, 0, 0, 0.5]
 
-                    MDBoxLayout:
-                        radius: dp(20)
-                        height: "200dp"
-                        size_hint_y: None
-                        md_bg_color: [0, 0, 0, 0.5]
 
-                    MDBoxLayout:
-                        radius: dp(20)
-                        height: "200dp"
-                        size_hint_y: None
-                        md_bg_color: [0, 0, 0, 0.5]
 
-<ResentPlays@MDBoxLayout>:
-    id: resents
-    orientation: "vertical"
-    FitImage:
-        source: "story.jfif"
-    MDLabel:
-        text: "Your Plays"
-        padding: 0, 0
+
+
+<CustomImageTile@MDSmartTile>:
+    size_hint: None, None
+    height: "180dp"
+    width: "170dp"
