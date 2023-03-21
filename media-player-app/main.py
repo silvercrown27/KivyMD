@@ -9,13 +9,8 @@ from screens.homescreen import HomeScreen
 import os
 
 Window.size = (328, 688)
-
+Builder.load_file("MainScreen.kv")
 Builder.load_file("screens/home-screen.kv")
-
-
-class WindowManager(ScreenManager):
-    """"""
-
 
 class MainScreen(Screen):
     ''''''
@@ -30,20 +25,20 @@ class MainApp(MDApp):
         self.theme_cls.accent_hue = "700"
         self.title = "Media Portal"
 
-        self.wm = WindowManager()
+        self.wm = MainScreen()
+        HomeScreen().ids.recents_bar.add_widget(MDSmartTile(source='img/fl1.jpg'))
 
         screens = [
             HomeScreen(name="HomeScreen"),
         ]
 
-        self.wm = WindowManager(transition=SwapTransition())
-
         for screen in screens:
-            MainScreen().ids.WindowManager.add_widget(screen)
+            self.wm.ids.WindowManager.add_widget(screen)
 
-        # self.my_widgets()
+        self.my_widgets()
 
-        return Builder.load_file("MainScreen.kv")
+        return self.wm
+
 
     def my_widgets(self):
         img_dir = f"img/"
@@ -56,7 +51,7 @@ class MainApp(MDApp):
         print(img_list)
 
         for img in img_list:
-            self.wm.screens[0].ids.recents_bar.add_widget(
+            self.wm.ids.WindowManager.screens[0].ids.recents_bar.add_widget(
                 MDSmartTile(
                     size_hint=(None, None),
                     height="180dp",
