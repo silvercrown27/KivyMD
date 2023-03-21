@@ -26,7 +26,6 @@ class MainApp(MDApp):
         self.title = "Media Portal"
 
         self.wm = MainScreen()
-        HomeScreen().ids.recents_bar.add_widget(MDSmartTile(source='img/fl1.jpg'))
 
         screens = [
             HomeScreen(name="HomeScreen"),
