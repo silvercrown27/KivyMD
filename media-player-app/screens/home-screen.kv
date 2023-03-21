@@ -1,0 +1,26 @@
+<HomeScreen>:
+    MDBoxLayout:
+        MDScrollView:
+            do_scroll_y: True
+            do_scroll_x: False
+            effect_cls: "ScrollEffect"
+            bar_width: 0
+            MDBoxLayout:
+                id: hello
+                adaptive_height: True
+                orientation: "vertical"
+                spacing: "20dp"
+                padding: "20dp"
+                MDLabel:
+                    text: 'recents'
+                    theme_text_color: "Primary"
+                ScrollView:
+                    bar_width: 0
+                    size_hint_y: None
+                    height: "180dp"
+                    MDBoxLayout:
+                        id:recents_bar
+                        adaptive_width:True,
+                        spacing: "20dp"
+
+
