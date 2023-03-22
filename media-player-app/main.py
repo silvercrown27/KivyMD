@@ -38,7 +38,6 @@ class MainApp(MDApp):
 
         return self.wm
 
-
     def my_widgets(self):
         img_dir = f"img/"
         img_list = []
@@ -47,15 +46,16 @@ class MainApp(MDApp):
             f = os.path.join(img_dir, filename)
             if f.endswith('.jpg'):
                 img_list.append(f)
-        print(img_list)
 
         for img in img_list:
             self.wm.ids.WindowManager.screens[0].ids.recents_bar.add_widget(
                 MDSmartTile(
+                    radius=24,
+                    box_radius=[0, 0, 24, 24],
                     size_hint=(None, None),
                     height="180dp",
                     width="170dp",
-                    source='img',
+                    source=img,
                 )
             )
 
