@@ -8,3 +8,4 @@ from kivymd.uix.imagelist.imagelist import MDSmartTile
 
 class HomeScreen(Screen):
     text = StringProperty()
+
