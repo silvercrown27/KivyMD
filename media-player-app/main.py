@@ -3,6 +3,7 @@ from kivy.core.window import Window
 from kivy.uix.screenmanager import Screen, ScreenManager, SwapTransition
 
 from kivymd.app import MDApp
+from kivymd.uix.label import MDLabel
 from kivymd.uix.imagelist.imagelist import MDSmartTile
 from screens.homescreen import HomeScreen
 
@@ -18,7 +19,7 @@ class MainScreen(Screen):
 
 class MainApp(MDApp):
     def build(self):
-        self.theme_cls.theme_style = 'Dark'
+        self.theme_cls.theme_style = 'Light'
         self.theme_cls.material_style = "M3"
         self.theme_cls.primary_palette = "Blue"
         self.theme_cls.accent_palette = "Blue"
@@ -50,11 +51,12 @@ class MainApp(MDApp):
         for img in img_list:
             self.wm.ids.WindowManager.screens[0].ids.recents_bar.add_widget(
                 MDSmartTile(
+                    MDLabel(text=img, text_color=[1,1,1,1]),
                     radius=24,
                     box_radius=[0, 0, 24, 24],
                     size_hint=(None, None),
-                    height="180dp",
-                    width="170dp",
+                    height="155dp",
+                    width="130dp",
                     source=img,
                 )
             )
