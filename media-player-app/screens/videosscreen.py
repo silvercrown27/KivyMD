@@ -1,7 +1,5 @@
-import kivy
-
 from kivymd.uix.screen import MDScreen
 
 
-class HomeScreen(MDScreen):
+class VideosScreen(MDScreen):
     ''''''

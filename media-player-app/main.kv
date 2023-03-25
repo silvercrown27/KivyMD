@@ -7,13 +7,12 @@
         Rectangle:
             size: self.size
             pos: self.pos
-            texture: Gradient.vertical(get_color_from_hex("#05696B"), get_color_from_hex("#301934"))
+            texture: Gradient.vertical(get_color_from_hex("#05696B"), get_color_from_hex("#00FFFF"))
 
     MDNavigationLayout:
 
         ScreenManager:
             id: WindowManager
-
 
 
         MDNavigationDrawer:
@@ -31,11 +30,17 @@
                     right_text: "Music"
                     text_right_color: "#4a4939"
                     icon: "music-circle-outline"
+                    on_press:
+                        root.ids.nav_drawer.set_state("close")
+                        root.ids.WindowManager.current = "MusicScreen"
 
                 MDNavigationDrawerItem:
                     right_text: "Videos"
                     text_right_color: "#4a4939"
                     icon: "motion-play"
+                    on_press:
+                        root.ids.nav_drawer.set_state("close")
+                        root.ids.WindowManager.current = "VideosScreen"
 
                 MDNavigationDrawerItem:
                     right_text: "Pictures"
@@ -56,4 +61,7 @@
                     right_text: "Settings"
                     text_right_color: "#4a4939"
                     icon: "dots-horizontal-circle"
+                    on_press:
+                        root.ids.nav_drawer.set_state("close")
+                        root.ids.WindowManager.current = "MenuScreen"
 

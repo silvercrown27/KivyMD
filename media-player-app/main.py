@@ -1,17 +1,22 @@
 from kivy.lang import Builder
 from kivy.core.window import Window
-from kivy.uix.screenmanager import Screen, ScreenManager, SwapTransition
+from kivy.uix.screenmanager import Screen
 
 from kivymd.app import MDApp
 from kivymd.uix.label import MDLabel
 from kivymd.uix.imagelist.imagelist import MDSmartTile
-from screens.homescreen import HomeScreen
+
+from screens import homescreen, musicscreen, videosscreen, menuscreen
 
 import os
 
 Window.size = (328, 688)
-Builder.load_file("MainScreen.kv")
-Builder.load_file("screens/home-screen.kv")
+Builder.load_file("main.kv")
+# Builder.load_file("screens/home-screen.kv")
+Builder.load_file("screens/music-screen.kv")
+# Builder.load_file("screens/videos-screen.kv")
+# Builder.load_file("screens/menu-screen.kv")
+
 
 class MainScreen(Screen):
     ''''''
@@ -29,7 +34,10 @@ class MainApp(MDApp):
         self.wm = MainScreen()
 
         screens = [
-            HomeScreen(name="HomeScreen"),
+            homescreen.HomeScreen(name="HomeScreen"),
+            musicscreen.MusicScreen(name="MusicScreen"),
+            videosscreen.VideosScreen(name="VideosScreen"),
+            menuscreen.MenuScreen(name="MenuScreen"),
         ]
 
         for screen in screens:
