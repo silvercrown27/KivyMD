@@ -1,6 +1,6 @@
+#:import SwapTransition kivy.uix.screenmanager.SwapTransition
 #:import get_color_from_hex kivy.utils.get_color_from_hex
 #:import Gradient kivy_gradient.Gradient
-
 
 <MainScreen>:
     canvas:
@@ -13,7 +13,7 @@
 
         ScreenManager:
             id: WindowManager
-
+            transition: SwapTransition()
 
         MDNavigationDrawer:
             id: nav_drawer

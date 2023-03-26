@@ -1,0 +1,73 @@
+<HomeScreen>:
+    MDScrollView:
+        id: bar
+        do_scroll_y: True
+        do_scroll_x: False
+        effect_cls: "ScrollEffect"
+        bar_width: 0
+        MDFloatLayout:
+            orientation: "vertical"
+            size_hint: 1, 1
+
+            MDTopAppBar:
+                pos_hint: {"top": 1}
+                md_bg_color: [0, 100, 200, 1]
+                padding: [0, 0, 0, 10]
+                elavation: 0
+                MDLabel:
+                    text: "Good Evening"
+
+                MDCard:
+                    size_hint: None, None
+                    size: "35dp", "35dp"
+                    pos_hint: {"center_x": .95, "center_y": .5}
+                    md_bg_color: [0, 0, 0, 0]
+                    FitImage:
+                        source: "img/profile.jfif"
+                        size_hint: .75, .85
+                        radius: 36, 36, 36, 36
+                        pos_hint: {"center_y": .5}
+
+            MDBoxLayout:
+                adaptive_height: True
+                orientation: "vertical"
+                pos_hint: {'top': .9}
+                spacing: "20dp"
+                padding: "20dp"
+                MDLabel:
+                    text: 'recents'
+                    text_color: [1, 1, 1, 1]
+                ScrollView:
+                    bar_width: 0
+                    size_hint_y: None
+                    height: "150dp"
+                    MDBoxLayout:
+                        id:recents_bar
+                        adaptive_width:True,
+                        spacing: "20dp"
+
+                MDLabel:
+                    text: "Playlists"
+                ScrollView:
+                    do_scroll_y: True
+                    bar_width: 0
+                    MDGridLayout:
+                        id: playlists
+                        adaptive_height: True
+                        spacing: "20dp"
+                        cols: 2
+
+                MDFloatingActionButton:
+                    id: button
+                    icon: "plus"
+                    pos_hint: {'center_y': .2, 'center_x': .9}
+                    on_release: app.tap_target_start()
+
+            NavBar:
+                radius: [14]
+                elevation: 4
+                size_hint: .95, .08
+                md_bg_color: 1, 1, 1, 1
+                pos_hint: {"center_x": .5, "center_y": .07}
+                MDGridLayout:
+                    cols: 5

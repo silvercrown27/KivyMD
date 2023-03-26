@@ -31,8 +31,6 @@ class MainScreen(Screen):
 class DrawerClickableItem(MDNavigationDrawerItem):
     def builder(self):
         self.focus_color = "#0000FF"
-        self.text_color = "#4a4939"
-        self.icon_color ="#4a4939"
         self.ripple_color = "#c5bdd2"
         self.selected_color = "#0c6c4d"
 
@@ -56,7 +54,6 @@ class MainApp(MDApp):
             explorewindow.ExploreWindow(name="ExploreWindow"),
             menuscreen.MenuWindow(name="MenuWindow"),
         ]
-
         for screen in screens:
             self.wm.ids.WindowManager.add_widget(screen)
 
@@ -74,7 +71,7 @@ class MainApp(MDApp):
                 img_list.append(f)
 
         for img in img_list:
-            self.wm.ids.WindowManager.screens[1].ids.recents_bar.add_widget(
+            self.wm.ids.WindowManager.screens[0].ids.recents_bar.add_widget(
                 MDSmartTile(
                     MDLabel(text=img, text_color=[1, 1, 1, 1]),
                     radius=24,
