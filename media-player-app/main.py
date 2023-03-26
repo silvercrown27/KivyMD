@@ -82,6 +82,17 @@ class MainApp(MDApp):
                     source=img,
                 )
             )
+            self.wm.ids.WindowManager.screens[0].ids.playlists.add_widget(
+                MDSmartTile(
+                    MDLabel(text=img, text_color=[1, 1, 1, 1]),
+                    radius=24,
+                    box_radius=[0, 0, 24, 24],
+                    size_hint=(None, None),
+                    height="155dp",
+                    width="130dp",
+                    source=img,
+                )
+            )
 
 
 if __name__ == "__main__":
