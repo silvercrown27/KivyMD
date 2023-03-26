@@ -18,15 +18,14 @@
         MDNavigationDrawer:
             id: nav_drawer
             width: dp(150)
-            radius: (0, 16, 16, 0)
-            enable_swiping: True
-            md_bg_color: [1, 1, 0, 0.5]
+            radius: (0, 0, 0, .5)
+            md_bg_color: [0, 20, 100, 1]
 
             MDNavigationDrawerMenu:
+                id: Menu
                 spacing: dp(40)
-                valign: "center"
-                selected_color: None
-                MDNavigationDrawerItem:
+
+                DrawerClickableItem:
                     right_text: "Music"
                     text_right_color: "#4a4939"
                     icon: "music-circle-outline"
@@ -34,7 +33,7 @@
                         root.ids.nav_drawer.set_state("close")
                         root.ids.WindowManager.current = "MusicWindow"
 
-                MDNavigationDrawerItem:
+                DrawerClickableItem:
                     right_text: "Videos"
                     text_right_color: "#4a4939"
                     icon: "motion-play"
@@ -42,7 +41,7 @@
                         root.ids.nav_drawer.set_state("close")
                         root.ids.WindowManager.current = "VideosWindow"
 
-                MDNavigationDrawerItem:
+                DrawerClickableItem:
                     right_text: "Pictures"
                     text_right_color: "#4a4939"
                     icon: "image-filter-hdr"
@@ -50,7 +49,7 @@
                         root.ids.nav_drawer.set_state("close")
                         root.ids.WindowManager.current = "PicturesWindow"
 
-                MDNavigationDrawerItem:
+                DrawerClickableItem:
                     right_text: "Library"
                     text_right_color: "#4a4939"
                     icon: "plus-box-multiple"
@@ -58,7 +57,7 @@
                         root.ids.nav_drawer.set_state("close")
                         root.ids.WindowManager.current = "LibraryWindow"
 
-                MDNavigationDrawerItem:
+                DrawerClickableItem:
                     right_text: "Explore"
                     text_right_color: "#4a4939"
                     icon: "compass"
@@ -66,10 +65,12 @@
                         root.ids.nav_drawer.set_state("close")
                         root.ids.WindowManager.current = "ExploreWindow"
 
-                MDNavigationDrawerItem:
+                DrawerClickableItem:
                     right_text: "Settings"
                     text_right_color: "#4a4939"
                     icon: "dots-horizontal-circle"
                     on_press:
                         root.ids.nav_drawer.set_state("close")
                         root.ids.WindowManager.current = "MenuWindow"
+
+

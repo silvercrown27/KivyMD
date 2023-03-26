@@ -7,6 +7,7 @@ from kivy.uix.screenmanager import Screen
 from kivymd.app import MDApp
 from kivymd.uix.label import MDLabel
 from kivymd.uix.imagelist.imagelist import MDSmartTile
+from kivymd.uix.navigationdrawer.navigationdrawer import MDNavigationDrawerItem
 
 from screens import homescreen, musicwindow, videoswindow, picturesWindow, libraryWindow, explorewindow, menuscreen
 import os
@@ -27,9 +28,17 @@ class MainScreen(Screen):
     ''''''
 
 
+class DrawerClickableItem(MDNavigationDrawerItem):
+    def builder(self):
+        self.focus_color = "#0000FF"
+        self.text_color = "#4a4939"
+        self.icon_color ="#4a4939"
+        self.ripple_color = "#c5bdd2"
+        self.selected_color = "#0c6c4d"
+
+
 class MainApp(MDApp):
     def build(self):
-        self.theme_cls.theme_style = 'Light'
         self.theme_cls.material_style = "M2"
         self.theme_cls.primary_palette = "Cyan"
         self.theme_cls.accent_palette = "Cyan"
