@@ -6,6 +6,6 @@ from kivy.uix.screenmanager import Screen
 from kivymd.uix.imagelist.imagelist import MDSmartTile
 
 
-class MusicScreen(Screen):
+class MusicWindow(Screen):
     text = StringProperty()
 

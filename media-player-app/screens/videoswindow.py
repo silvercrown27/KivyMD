@@ -1,5 +1,5 @@
 from kivymd.uix.screen import MDScreen
 
 
-class VideosScreen(MDScreen):
+class VideosWindow(MDScreen):
     ''''''
