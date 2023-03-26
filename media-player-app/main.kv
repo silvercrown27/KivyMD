@@ -32,7 +32,7 @@
                     icon: "music-circle-outline"
                     on_press:
                         root.ids.nav_drawer.set_state("close")
-                        root.ids.WindowManager.current = "MusicScreen"
+                        root.ids.WindowManager.current = "MusicWindow"
 
                 MDNavigationDrawerItem:
                     right_text: "Videos"
@@ -40,22 +40,31 @@
                     icon: "motion-play"
                     on_press:
                         root.ids.nav_drawer.set_state("close")
-                        root.ids.WindowManager.current = "VideosScreen"
+                        root.ids.WindowManager.current = "VideosWindow"
 
                 MDNavigationDrawerItem:
                     right_text: "Pictures"
                     text_right_color: "#4a4939"
                     icon: "image-filter-hdr"
+                    on_press:
+                        root.ids.nav_drawer.set_state("close")
+                        root.ids.WindowManager.current = "PicturesWindow"
 
                 MDNavigationDrawerItem:
                     right_text: "Library"
                     text_right_color: "#4a4939"
                     icon: "plus-box-multiple"
+                    on_press:
+                        root.ids.nav_drawer.set_state("close")
+                        root.ids.WindowManager.current = "LibraryWindow"
 
                 MDNavigationDrawerItem:
                     right_text: "Explore"
                     text_right_color: "#4a4939"
                     icon: "compass"
+                    on_press:
+                        root.ids.nav_drawer.set_state("close")
+                        root.ids.WindowManager.current = "ExploreWindow"
 
                 MDNavigationDrawerItem:
                     right_text: "Settings"
@@ -63,5 +72,4 @@
                     icon: "dots-horizontal-circle"
                     on_press:
                         root.ids.nav_drawer.set_state("close")
-                        root.ids.WindowManager.current = "MenuScreen"
-
+                        root.ids.WindowManager.current = "MenuWindow"

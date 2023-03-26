@@ -45,7 +45,7 @@ class MainApp(MDApp):
             picturesWindow.PicturesWindow(name="PicturesWindow"),
             libraryWindow.LibraryWindow(name="LibraryWindow"),
             explorewindow.ExploreWindow(name="ExploreWindow"),
-            menuscreen.MenuWindow(name="MenuScreen"),
+            menuscreen.MenuWindow(name="MenuWindow"),
         ]
 
         for screen in screens:
@@ -65,7 +65,7 @@ class MainApp(MDApp):
                 img_list.append(f)
 
         for img in img_list:
-            self.wm.ids.WindowManager.screens[0].ids.recents_bar.add_widget(
+            self.wm.ids.WindowManager.screens[1].ids.recents_bar.add_widget(
                 MDSmartTile(
                     MDLabel(text=img, text_color=[1, 1, 1, 1]),
                     radius=24,
