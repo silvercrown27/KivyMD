@@ -2,6 +2,29 @@
 #:import get_color_from_hex kivy.utils.get_color_from_hex
 #:import Gradient kivy_gradient.Gradient
 
+<Splash>:
+    md_bg_color: [0, 100, 100, 1]
+    on_enter:self.ids.progress.start()
+    MDFloatLayout:
+        Image:
+            source: "../icons/cloud-music-icon.png"
+            pos_hint: {"center_x": .5, "center_y": .7}
+            size_hint: .8, .4
+            anim_delay: 0
+            anim_reset: True
+
+        MDBoxLayout:
+            pos_hint: {"center_x":.5, "center_y":.3}
+            padding: "10dp"
+            size_hint: .8, .02
+            MDProgressBar:
+                id: progress
+                color: [0, 0, 0, 1]
+                orientation: "horizontal"
+                type: "determinate"
+                running_duration: 10
+                catching_duration: 1.2
+
 <MainScreen>:
     canvas:
         Rectangle:

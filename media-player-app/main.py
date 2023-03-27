@@ -1,20 +1,21 @@
 # import required kivy packages
 from kivy.lang import Builder
 from kivy.core.window import Window
-from kivy.uix.screenmanager import Screen
+from kivy.uix.screenmanager import Screen, ScreenManager, FadeTransition
 
 # import kivymd prerequisites
 from kivymd.app import MDApp
 from kivymd.uix.label import MDLabel
 from kivymd.uix.imagelist.imagelist import MDSmartTile
+from kivymd.uix.screen import MDScreen
 from kivymd.uix.navigationdrawer.navigationdrawer import MDNavigationDrawerItem
-
+# import other dependencies
 from screens import homescreen, musicwindow, videoswindow, picturesWindow, libraryWindow, explorewindow, menuscreen
 import os
 
 Window.size = (328, 688)
-# Load requires kv filed
-Builder.load_file("main.kv")
+
+# Load required kv filed
 Builder.load_file("screens/home-screen.kv")
 Builder.load_file("screens/music-screen.kv")
 Builder.load_file("screens/videos-screen.kv")
@@ -23,10 +24,14 @@ Builder.load_file("screens/library.kv")
 Builder.load_file("screens/explore.kv")
 Builder.load_file("screens/menu-screen.kv")
 
+class Splash(MDScreen):
+    ''''''
 
 class MainScreen(Screen):
     ''''''
 
+class ScrMgr(ScreenManager):
+    ''''''
 
 class DrawerClickableItem(MDNavigationDrawerItem):
     def builder(self):
@@ -42,7 +47,17 @@ class MainApp(MDApp):
         self.theme_cls.accent_palette = "Cyan"
         self.theme_cls.accent_hue = "700"
         self.title = "Media Portal"
+        # Adding a splash screen
+        self.SrManager = ScrMgr()
 
+        basescreens = [
+            Splash(name="Splash"),
+            MainScreen(name="Main")
+        ]
+        for screen in basescreens:
+            self.SrManager.add_widget(screen)
+
+        # Loading the main app
         self.wm = MainScreen()
 
         screens = [
@@ -59,7 +74,7 @@ class MainApp(MDApp):
 
         self.my_widgets()
 
-        return self.wm
+        return self.SrManager
 
     def my_widgets(self):
         img_dir = f"img/"

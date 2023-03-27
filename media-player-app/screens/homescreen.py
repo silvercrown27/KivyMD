@@ -2,12 +2,12 @@ import kivy
 
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.floatlayout import MDFloatLayout
-from kivymd.uix.behaviors import FakeRectangularElevationBehavior
+from kivymd.uix.behaviors import CommonElevationBehavior
 
 
 class HomeScreen(MDScreen):
     ''''''
 
 
-class NavBar(FakeRectangularElevationBehavior, MDFloatLayout):
+class NavBar(CommonElevationBehavior, MDFloatLayout):
     pass

@@ -1,88 +1,78 @@
-from kivy.lang import Builder
+########################################################################
+## SPINN DESIGN CODE
+# YOUTUBE: (SPINN TV) https://www.youtube.com/spinnTv
+# WEBSITE: spinndesign.com
+# TUTORIAL: KIVY
+########################################################################
 
-from kivymd.app import MDApp
-
-KV = '''
-<DrawerClickableItem@MDNavigationDrawerItem>
-    focus_color: "#e7e4c0"
-    text_color: "#4a4939"
-    icon_color: "#4a4939"
-    ripple_color: "#c5bdd2"
-    selected_color: "#0c6c4d"
-    selected: False
-
-
-<DrawerLabelItem@MDNavigationDrawerItem>
-    text_color: "#4a4939"
-    icon_color: "#4a4939"
-    focus_behavior: False
-    selected_color: "#4a4939"
-    _no_ripple_effect: True
-
-
-MDScreen:
-
-    MDNavigationLayout:
-
-        MDScreenManager:
-
-            MDScreen:
-
-                MDTopAppBar:
-                    title: "Navigation Drawer"
-                    elevation: 4
-                    pos_hint: {"top": 1}
-                    md_bg_color: "#e7e4c0"
-                    specific_text_color: "#4a4939"
-                    left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
-
-        MDNavigationDrawer:
-            id: nav_drawer
-            selected: False
-            radius: (0, 16, 16, 0)
-
-            MDNavigationDrawerMenu:
-                
-
-                MDNavigationDrawerHeader:
-                    title: "Header title"
-                    title_color: "#4a4939"
-                    text: "Header text"
-                    spacing: "4dp"
-                    padding: "12dp", 0, 0, "56dp"
-
-                MDNavigationDrawerLabel:
-                    text: "Mail"
-
-                DrawerClickableItem:
-                    icon: "gmail"
-                    right_text: "+99"
-                    text_right_color: "#4a4939"
-                    text: "Inbox"
-
-                DrawerClickableItem:
-                    icon: "send"
-                    text: "Outbox"
-
-                MDNavigationDrawerDivider:
-
-                MDNavigationDrawerLabel:
-                    text: "Labels"
-
-                DrawerLabelItem:
-                    icon: "information-outline"
-                    text: "Label"
-
-                DrawerLabelItem:
-                    icon: "information-outline"
-                    text: "Label"
-'''
+########################################################################
+## IMPORTS
+########################################################################
+from random import random
+# Import kivy app
+from kivy.app import App
+# Import kivy widget
+from kivy.uix.widget import Widget
+# Import kivy button
+from kivy.uix.button import Button
+# Import graphics
+from kivy.graphics import Color, Ellipse, Line
 
 
-class Example(MDApp):
+########################################################################
+## PAINT WIDGET CLASS
+########################################################################
+class MyPaintWidget(Widget):
+    # Touch event listener
+    def on_touch_down(self, touch):
+        # Create random color
+        color = (random(), 1, 1)
+        # Draw
+        with self.canvas:
+            Color(*color, mode='hsv')
+            # Ellipse size
+            d = 30.
+            # draw Ellipse
+            Ellipse(pos=(touch.x - d / 2, touch.y - d / 2), size=(d, d))
+            # Create touch points/ draw line
+            touch.ud['line'] = Line(points=(touch.x, touch.y))
+
+    def on_touch_move(self, touch):
+        # Add touch points to draw a line
+        touch.ud['line'].points += [touch.x, touch.y]
+
+
+########################################################################
+## MAIN CLASS
+########################################################################
+class MyPaintApp(App):
+    # Build app UI
     def build(self):
-        self.theme_cls.theme_style = "Dark"
-        return Builder.load_string(KV)
+        # Parent widget
+        parent = Widget()
+        # Painter Widget
+        self.painter = MyPaintWidget()
+        # Clear button
+        clearbtn = Button(text='Clear')
+        # Bind button event
+        clearbtn.bind(on_release=self.clear_canvas)
+        # Add widgets to parent
+        parent.add_widget(self.painter)
+        parent.add_widget(clearbtn)
+        # Return parent
+        return parent
+
+    # A function to clear the canvas
+    def clear_canvas(self, obj):
+        self.painter.canvas.clear()
 
 
-Example().run()
+########################################################################
+## RUN THE APP
+######################################################################## 
+if __name__ == '__main__':
+    MyPaintApp().run()
+
+########################################################################
+## <== END ==>
+########################################################################
