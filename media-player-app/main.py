@@ -1,4 +1,5 @@
 # import required kivy packages
+from kivy.clock import Clock
 from kivy.lang import Builder
 from kivy.core.window import Window
 from kivy.uix.screenmanager import Screen, ScreenManager, FadeTransition
@@ -24,14 +25,18 @@ Builder.load_file("screens/library.kv")
 Builder.load_file("screens/explore.kv")
 Builder.load_file("screens/menu-screen.kv")
 
+
 class Splash(MDScreen):
-    ''''''
+    def on_enter(self, *args):
+        Clock.schedule_once(self.switch_to_home, 11)
+
+    def switch_to_home(self, dt):
+        self.manager.current = "HomeScreen"
+
 
 class MainScreen(Screen):
     ''''''
 
-class ScrMgr(ScreenManager):
-    ''''''
 
 class DrawerClickableItem(MDNavigationDrawerItem):
     def builder(self):
@@ -48,14 +53,6 @@ class MainApp(MDApp):
         self.theme_cls.accent_hue = "700"
         self.title = "Media Portal"
         # Adding a splash screen
-        self.SrManager = ScrMgr()
-
-        basescreens = [
-            Splash(name="Splash"),
-            MainScreen(name="Main")
-        ]
-        for screen in basescreens:
-            self.SrManager.add_widget(screen)
 
         # Loading the main app
         self.wm = MainScreen()
@@ -68,13 +65,14 @@ class MainApp(MDApp):
             libraryWindow.LibraryWindow(name="LibraryWindow"),
             explorewindow.ExploreWindow(name="ExploreWindow"),
             menuscreen.MenuWindow(name="MenuWindow"),
+            Splash(name="Splash"),
         ]
         for screen in screens:
             self.wm.ids.WindowManager.add_widget(screen)
 
         self.my_widgets()
 
-        return self.SrManager
+        return self.wm
 
     def my_widgets(self):
         img_dir = f"img/"
@@ -108,6 +106,9 @@ class MainApp(MDApp):
                     source=img,
                 )
             )
+
+    def on_start(self):
+        self.wm.ids.WindowManager.current = "Splash"
 
 
 if __name__ == "__main__":
