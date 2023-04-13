@@ -8,20 +8,11 @@
         MDFloatLayout:
             orientation: "vertical"
             size_hint: 1, 1
-
-            MDFloatingActionButton:
-                id: button
-                icon: "plus"
-                pos_hint: {'center_y': .2, 'center_x': .9}
-                on_release: app.tap_target_start()
-
             MDTopAppBar:
                 pos_hint: {"top": 1}
                 md_bg_color: [0, 100, 200, 1]
                 padding: [0, 0, 0, 10]
-                elavation: 0
-                MDLabel:
-                    text: "Good Evening"
+                title: "Good Evening"
 
                 MDCard:
                     size_hint: None, None

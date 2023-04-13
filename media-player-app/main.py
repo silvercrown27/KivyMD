@@ -7,7 +7,10 @@ from kivy.uix.screenmanager import Screen, ScreenManager, FadeTransition
 # import kivymd prerequisites
 from kivymd.app import MDApp
 from kivymd.uix.label import MDLabel
+from kivymd.uix.card import MDCard
+from kivymd.uix.fitimage import FitImage
 from kivymd.uix.imagelist.imagelist import MDSmartTile
+from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.navigationdrawer.navigationdrawer import MDNavigationDrawerItem
 # import other dependencies
@@ -85,15 +88,25 @@ class MainApp(MDApp):
 
         for img in img_list:
             self.wm.ids.WindowManager.screens[0].ids.recents_bar.add_widget(
-                MDSmartTile(
-                    MDLabel(text=img, text_color=[1, 1, 1, 1]),
-                    radius=24,
-                    box_radius=[0, 0, 24, 24],
+                MDCard(
+                    MDBoxLayout(
+                        MDLabel(
+                            text=img,
+                        ),
+                        FitImage(
+                            size_hint=(None, None),
+                            height="130dp",
+                            width="130dp",
+                            source=img,
+                        ),
+                        orientation="vertical"
+                    ),
                     size_hint=(None, None),
-                    height="155dp",
+                    height="180dp",
                     width="130dp",
-                    source=img,
-                )
+                    focus_behavior=True,
+                    elevation=6,
+                    )
             )
             self.wm.ids.WindowManager.screens[0].ids.playlists.add_widget(
                 MDSmartTile(
@@ -107,8 +120,8 @@ class MainApp(MDApp):
                 )
             )
 
-    def on_start(self):
-        self.wm.ids.WindowManager.current = "Splash"
+    # def on_start(self):
+    #     self.wm.ids.WindowManager.current = "Splash"
 
 
 if __name__ == "__main__":
