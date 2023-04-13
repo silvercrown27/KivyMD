@@ -8,17 +8,21 @@
         MDFloatLayout:
             orientation: "vertical"
             size_hint: 1, 1
-            MDTopAppBar:
+            MDBoxLayout:
+                size_hint: 1, None
+                height: "80dp"
                 pos_hint: {"top": 1}
+                padding: "15dp"
+                orientation: "horizontal"
                 md_bg_color: [0, 100, 200, 1]
-                padding: [0, 0, 0, 10]
-                title: "Good Evening"
-
+                MDLabel:
+                    text: "Good Morning"
+                    font_style: "H5"
                 MDCard:
                     size_hint: None, None
                     size: "35dp", "35dp"
-                    pos_hint: {"center_x": .95, "center_y": .5}
                     md_bg_color: [0, 0, 0, 0]
+                    pos_hint: {"center_y": .5}
                     FitImage:
                         source: "img/profile.jfif"
                         size_hint: .75, .85
@@ -31,6 +35,12 @@
                 pos_hint: {'top': .9}
                 spacing: "20dp"
                 padding: "20dp"
+                MDGridLayout:
+                    id: fav_places
+                    size_hint: 1, None
+                    adaptive_height: True
+                    cols: 2
+
                 MDLabel:
                     text: 'recents'
                     text_color: [1, 1, 1, 1]
@@ -41,7 +51,7 @@
                     MDBoxLayout:
                         id:recents_bar
                         adaptive_width:True,
-                        spacing: "20dp"
+                        spacing: "10dp"
 
                 MDLabel:
                     text: "Playlists"
