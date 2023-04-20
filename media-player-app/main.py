@@ -31,7 +31,6 @@ class Splash(MDScreen):
     def switch_to_home(self, dt):
         self.manager.current = "HomeScreen"
 
-
 class MainScreen(Screen):
     ''''''
 
@@ -78,10 +77,8 @@ class MainApp(MDApp):
         self.root.size = (width, height)
         self.root.pos = (0, 0)
 
-
     # def on_start(self):
     #     self.wm.ids.WindowManager.current = "Splash"
-
 
 if __name__ == "__main__":
     MainApp().run()

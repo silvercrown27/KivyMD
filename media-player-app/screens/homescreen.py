@@ -42,7 +42,7 @@ class HomeScreen(MDScreen):
                     elevation=3,
                     )
             )
-            self.wm.ids.WindowManager.screens[0].ids.playlists.add_widget(
+            self.wm.ids.WindowManager.screens[0].ids.fav_places.add_widget(
                 MDCard(
                     MDBoxLayout(
                         FitImage(
