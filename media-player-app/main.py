@@ -2,7 +2,7 @@
 from kivy.clock import Clock
 from kivy.lang import Builder
 from kivy.core.window import Window
-from kivy.uix.screenmanager import Screen, ScreenManager, FadeTransition
+from kivy.uix.screenmanager import Screen
 
 # import kivymd prerequisites
 from kivymd.app import MDApp
@@ -69,6 +69,7 @@ class MainApp(MDApp):
             self.wm.ids.WindowManager.add_widget(screen)
 
         homescreen.HomeScreen.my_widgets(self)
+        explorewindow.ExploreWindow()
 
         return self.wm
 

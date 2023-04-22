@@ -1,0 +1,27 @@
+<ExploreWindow>:
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            title: "Browse your files"
+            orientation: "horizontal"
+            MDCard:
+                size_hint: None, None
+                size: "35dp", "35dp"
+                md_bg_color: [0, 0, 0, 0]
+                pos_hint: {"center_y": .5}
+                FitImage:
+                    source: "img/profile.jfif"
+                    size_hint: .75, .85
+                    radius: 36, 36, 36, 36
+                    pos_hint: {"center_y": .5}
+
+
+        MDFloatLayout:
+
+            MDRoundFlatIconButton:
+                text: "Open manager"
+                text_color: [0, 0, 0, 0]
+                icon: "folder"
+                pos_hint: {"center_x": .5, "center_y": .5}
+                on_release: root.file_manager_open()
