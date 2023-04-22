@@ -20,6 +20,29 @@ class HomeScreen(MDScreen):
             if f.endswith('.jpg'):
                 img_list.append(f)
 
+        for img in img_list[:6]:
+            self.wm.ids.WindowManager.screens[0].ids.fav_places.add_widget(
+                MDCard(
+                    MDBoxLayout(
+                        FitImage(
+                            size_hint=(None, None),
+                            height="50dp",
+                            width="50dp",
+                            source=img,
+                        ),
+                        MDLabel(
+                            text=img,
+                        ),
+                        orientation="horizontal",
+                    ),
+                    size_hint=(.4, None),
+                    height="50dp",
+                    spacing="20dp",
+                    focus_behavior=True,
+                    elevation=3,
+                )
+            )
+
         for img in img_list:
             self.wm.ids.WindowManager.screens[0].ids.recents_bar.add_widget(
                 MDCard(
@@ -42,13 +65,15 @@ class HomeScreen(MDScreen):
                     elevation=3,
                     )
             )
-            self.wm.ids.WindowManager.screens[0].ids.fav_places.add_widget(
+
+        for img in img_list[-4:]:
+            self.wm.ids.WindowManager.screens[0].ids.playlists.add_widget(
                 MDCard(
                     MDBoxLayout(
                         FitImage(
                             size_hint=(None, None),
                             height="150dp",
-                            width="130dp",
+                            width="170dp",
                             source=img,
                         ),
                         MDLabel(
@@ -58,33 +83,11 @@ class HomeScreen(MDScreen):
                     ),
                     size_hint=(None, None),
                     height="180dp",
-                    width="130dp",
+                    width="160dp",
                     focus_behavior=True,
                     elevation=3,
                 )
             )
-            for img in img_list[:6]:
-                self.wm.ids.WindowManager.screens[0].ids.playlists.add_widget(
-                    MDCard(
-                        MDBoxLayout(
-                            FitImage(
-                                size_hint=(None, None),
-                                height="150dp",
-                                width="130dp",
-                                source=img,
-                            ),
-                            MDLabel(
-                                text=img,
-                            ),
-                            orientation="horizontal"
-                        ),
-                        size_hint=(None, None),
-                        height="50dp",
-                        width="100dp",
-                        focus_behavior=True,
-                        elevation=3,
-                    )
-                )
 
 
 class NavBar(CommonElevationBehavior, MDFloatLayout):

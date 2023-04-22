@@ -34,11 +34,15 @@
                 orientation: "vertical"
                 pos_hint: {'top': .9}
                 spacing: "20dp"
-                padding: "20dp"
+                padding: "10dp"
+                MDLabel:
+                    text: "Favorites"
+                    text_color: [1, 1, 1, 1]
                 MDGridLayout:
                     id: fav_places
-                    size_hint: 1, None
                     adaptive_height: True
+                    spacing: "5dp"
+                    size_hint: 1, None
                     cols: 2
 
                 MDLabel:
@@ -51,7 +55,7 @@
                     MDBoxLayout:
                         id:recents_bar
                         adaptive_width:True,
-                        spacing: "10dp"
+                        spacing: "15dp"
 
                 MDLabel:
                     text: "Playlists"
@@ -60,10 +64,11 @@
                     height: "275dp"
                     bar_width: 0
                     MDGridLayout:
-                        spacing: "17dp"
+                        spacing: "8dp"
                         adaptive_height: True
                         id: playlists
                         cols: 2
+                        cols_minimum: {0: 170, 1: 170}
 
             NavBar:
                 radius: [14]

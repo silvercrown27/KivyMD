@@ -12,7 +12,7 @@ from kivymd.uix.navigationdrawer.navigationdrawer import MDNavigationDrawerItem
 from screens import homescreen, musicwindow, videoswindow, picturesWindow, libraryWindow, explorewindow, menuscreen
 import os
 
-Window.size = (328, 688)
+Window.size = (348, 688)
 
 # Load required kv filed
 Builder.load_file("screens/home-screen.kv")
