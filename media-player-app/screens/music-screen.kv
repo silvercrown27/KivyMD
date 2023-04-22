@@ -1,22 +1,57 @@
 <MusicWindow>:
     MDBoxLayout:
-        size_hint: 1, 1
         orientation: "vertical"
-        NavBar:
-            radius: [14]
-            elevation: 4
-            size_hint: .95, None
-            height: "100dp"
-            md_bg_color: 1, 1, 1, 1
-            pos_hint: {"center_x": .5, "top": 1}
+        spacing: "5dp"
+        MDTopAppBar:
+            title: "Your Music"
+            orientation: "horizontal"
+            MDCard:
+                size_hint: None, None
+                size: "35dp", "35dp"
+                md_bg_color: [0, 0, 0, 0]
+                pos_hint: {"center_y": .5}
+                FitImage:
+                    source: "img/profile.jfif"
+                    size_hint: .75, .85
+                    radius: 36, 36, 36, 36
+                    pos_hint: {"center_y": .5}
+
+        MDTabs:
+            id: tabs
+            on_tab_switch: root.on_tab_switch(*args)
+            Tab:
+                title: "Tracks"
+                MDLabel:
+                    id: label
+                    text: "Tab 0"
+                    halign: "center"
+            Tab:
+                title: "Playlist"
+                MDLabel:
+                    id: label
+                    text: "Tab 0"
+                    halign: "center"
+            Tab:
+                title: "Artists"
+                MDLabel:
+                    id: label
+                    text: "Tab 0"
+                    halign: "center"
+            Tab:
+                title: "Genres"
+                MDLabel:
+                    id: label
+                    text: "Tab 0"
+                    halign: "center"
+
 
         NavBar:
             radius: [14]
             elevation: 4
             size_hint: .95, None
-            height: "100dp"
+            height: "50dp"
             md_bg_color: 1, 1, 1, 1
-            pos_hint: {"center_x": .5, "top": 0}
+            pos_hint: {"center_x": .5}
             MDGridLayout:
                 cols: 5
                 spacing: "17dp"
@@ -51,3 +86,9 @@
                     ripple_scale: 0
                     user_font_size: "50sp"
                     theme_text_color: "Custom"
+
+<Tab>
+    MDLabel:
+        id: label
+        text: "Tab 0"
+        halign: "center"

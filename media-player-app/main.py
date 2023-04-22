@@ -70,6 +70,7 @@ class MainApp(MDApp):
 
         homescreen.HomeScreen.my_widgets(self)
         explorewindow.ExploreWindow()
+        musicwindow.MusicWindow()
 
         return self.wm
 
