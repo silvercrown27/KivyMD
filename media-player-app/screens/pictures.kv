@@ -1,0 +1,54 @@
+<HeroItem>
+    size_hint_y: None
+    height: "200dp"
+    radius: 24
+
+    MDSmartTile:
+        id: tile
+        radius: 24
+        box_radius: 0, 0, 24, 24
+        box_color: 0, 0, 0, .5
+        source: "kivymd/images/logo/kivymd-icon-512.png"
+        size_hint: None, None
+        size: root.size
+        mipmap: True
+        on_release: root.on_release()
+
+        MDLabel:
+            text: root.tag
+            bold: True
+            font_style: "H6"
+            opposite_colors: True
+
+
+<PicturesWindow>:
+    MDScreenManager:
+
+        MDScreen:
+            name: "screen A"
+
+            ScrollView:
+                MDGridLayout:
+                    id: box
+                    cols: 2
+                    spacing: "12dp"
+                    padding: "12dp"
+                    adaptive_height: True
+
+        MDScreen:
+            name: "screen B"
+            heroes_to: [hero_to]
+
+            MDHeroTo:
+                id: hero_to
+                size_hint: 1, None
+                height: "220dp"
+                pos_hint: {"top": 1}
+
+            MDRaisedButton:
+                text: "Move Hero To Screen A"
+                pos_hint: {"center_x": .5}
+                y: "36dp"
+                on_release:
+                    root.current_heroes = [hero_to.tag]
+                    root.current = "screen A"

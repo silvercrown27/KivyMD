@@ -1,11 +1,10 @@
-import kivy
-from kivy.lang import Builder
-from kivy.properties import StringProperty
+import os
+
+from kivymd.uix.list import TwoLineAvatarIconListItem, IconLeftWidget, IconRightWidget
 
 from kivymd.uix.tab import MDTabsBase
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.floatlayout import MDFloatLayout
-
 
 
 class Tab(MDFloatLayout, MDTabsBase):
@@ -13,14 +12,25 @@ class Tab(MDFloatLayout, MDTabsBase):
 
 
 class MusicWindow(MDScreen):
-    def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
-        '''Called when switching tabs.
+    def my_widgets(self):
+        media_dir = f"C://Users/USER/Documents/GitHub/media/"
+        mymedia = []
 
-        :type instance_tabs: <kivymd.uix.tab.MDTabs object>;
-        :param instance_tab: <__main__.Tab object>;
-        :param instance_tab_label: <kivymd.uix.tab.MDTabsLabel object>;
-        :param tab_text: text or name icon of tab;
-        '''
+        for filename in os.listdir(media_dir):
+            f = filename
+            if f.endswith('.mp3'):
+                mymedia.append(f)
 
-        instance_tab.ids.label.text = tab_text
-
+        for m in mymedia:
+            self.wm.ids.WindowManager.screens[1].ids.tracks.add_widget(
+                TwoLineAvatarIconListItem(
+                    IconLeftWidget(
+                        icon="music-note-quarter",
+                    ),
+                    IconRightWidget(
+                        icon="dots-vertical",
+                    ),
+                    text=m,
+                    on_release=self.play_audio(media_dir, m),
+                )
+            )

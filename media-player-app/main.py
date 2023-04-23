@@ -1,5 +1,6 @@
 # import required kivy packages
 from kivy.clock import Clock
+from kivy.core.audio import SoundLoader
 from kivy.lang import Builder
 from kivy.core.window import Window
 from kivy.uix.screenmanager import Screen
@@ -33,6 +34,10 @@ class Splash(MDScreen):
 
 class MainScreen(Screen):
     ''''''
+
+
+class PlayWindow(MDScreen):
+    pass
 
 
 class DrawerClickableItem(MDNavigationDrawerItem):
@@ -69,8 +74,7 @@ class MainApp(MDApp):
             self.wm.ids.WindowManager.add_widget(screen)
 
         homescreen.HomeScreen.my_widgets(self)
-        explorewindow.ExploreWindow()
-        musicwindow.MusicWindow()
+        musicwindow.MusicWindow.my_widgets(self)
 
         return self.wm
 
@@ -79,8 +83,17 @@ class MainApp(MDApp):
         self.root.size = (width, height)
         self.root.pos = (0, 0)
 
+    def play_audio(self, media_dir, media_file):
+        def inner(obj):
+            self.sound = SoundLoader.load(os.path.join(media_dir, media_file))
+            if self.sound:
+                self.sound.play()
+
+        return inner
+
     # def on_start(self):
     #     self.wm.ids.WindowManager.current = "Splash"
+
 
 if __name__ == "__main__":
     MainApp().run()

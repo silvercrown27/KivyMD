@@ -96,4 +96,20 @@
                         root.ids.nav_drawer.set_state("close")
                         root.ids.WindowManager.current = "MenuWindow"
 
+<PlayWindow>:
 
+    MDIconButton:
+        id: my_sound
+        icon: "pause" if root.progress else "play"
+        user_font_size: 150
+        pos: 100, 100
+        on_press:
+            root.play_sound()
+
+    MDProgressBar:
+        id: progress_bar
+        size_hint: .8, .5
+        pos: 90, 200
+        min: 0
+        max: root.length
+        value: root.progress

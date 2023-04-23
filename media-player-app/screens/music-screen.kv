@@ -18,31 +18,43 @@
 
         MDTabs:
             id: tabs
-            on_tab_switch: root.on_tab_switch(*args)
             Tab:
                 title: "Tracks"
-                MDLabel:
-                    id: label
-                    text: "Tab 0"
-                    halign: "center"
+                ScrollView:
+                    do_scroll_y: True
+                    bar_width: 0
+                    MDBoxLayout:
+                        id: tracks
+                        orientation: "vertical"
+                        adaptive_height: True
             Tab:
-                title: "Playlist"
-                MDLabel:
-                    id: label
-                    text: "Tab 0"
-                    halign: "center"
+                title: "playlist"
+                ScrollView:
+                    do_scroll_y: True
+                    bar_width: 0
+                    MDBoxLayout:
+                        id: playlists
+                        orientation: "vertical"
+                        adaptive_height: True
             Tab:
-                title: "Artists"
-                MDLabel:
-                    id: label
-                    text: "Tab 0"
-                    halign: "center"
+                title: "artists"
+                ScrollView:
+                    do_scroll_y: True
+                    bar_width: 0
+                    MDBoxLayout:
+                        id: artists
+                        orientation: "vertical"
+                        adaptive_height: True
             Tab:
-                title: "Genres"
-                MDLabel:
-                    id: label
-                    text: "Tab 0"
-                    halign: "center"
+                title: "genres"
+                ScrollView:
+                    do_scroll_y: True
+                    bar_width: 0
+                    MDBoxLayout:
+                        id: genres
+                        orientation: "vertical"
+                        adaptive_height: True
+
 
 
         NavBar:
@@ -88,7 +100,3 @@
                     theme_text_color: "Custom"
 
 <Tab>
-    MDLabel:
-        id: label
-        text: "Tab 0"
-        halign: "center"
