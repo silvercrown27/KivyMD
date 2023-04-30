@@ -1,0 +1,41 @@
+<HomeScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            title: "test Screen"
+            MDCard:
+                size_hint: None, None
+                size: "35dp", "35dp"
+                md_bg_color: [0, 0, 0, 0]
+                pos_hint: {"center_y": .5}
+                FitImage:
+                    source: "../media-player-app/img/profile.jfif"
+                    size_hint: .75, .85
+                    radius: 36, 36, 36, 36
+                    pos_hint: {"center_y": .5}
+
+        MDFloatLayout:
+            orientation: "vertical"
+            size_hint_X: 1
+            MDCard:
+                size_hint: .9, .7
+                pos_hint: {"center_x":.5}
+                radius: 20, 20, 0, 0
+                orientation: "vertical"
+                md_bg_color: [0, 1, 1, 1]
+                MDLabel:
+                    text: "Good evening"
+                    font_style: "H4"
+                MDLabel:
+                    text: "20.00.60"
+                    font_style: "H3"
+                MDLabel:
+                    text: "Tuesday"
+                    font_style: "H5"
+                    pos_hint: {"center_x":.8}
+
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    id: home
+                    spacing: "20dp"
+                    adaptive_width: True
