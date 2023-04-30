@@ -26,7 +26,7 @@ class HomeScreen(MDScreen):
                     MDBoxLayout(
                         FitImage(
                             size_hint=(None, None),
-                            height="50dp",
+                            height="45dp",
                             width="50dp",
                             source=img,
                         ),
@@ -36,7 +36,7 @@ class HomeScreen(MDScreen):
                         orientation="horizontal",
                     ),
                     size_hint=(.4, None),
-                    height="50dp",
+                    height="45dp",
                     spacing="20dp",
                     focus_behavior=True,
                     elevation=3,
@@ -73,7 +73,7 @@ class HomeScreen(MDScreen):
                         FitImage(
                             size_hint=(None, None),
                             height="150dp",
-                            width="170dp",
+                            width="160dp",
                             source=img,
                         ),
                         MDLabel(
@@ -89,6 +89,28 @@ class HomeScreen(MDScreen):
                 )
             )
 
+        for img in img_list[-6:]:
+            self.wm.ids.WindowManager.screens[0].ids.plays.add_widget(
+                MDCard(
+                    MDBoxLayout(
+                        FitImage(
+                            size_hint=(None, None),
+                            pos_hint={"center_X": .5},
+                            height="40dp",
+                            width="40dp",
+                            radius="50dp",
+                            source=img,
+                        ),
+                        MDLabel(
+                            text=img[4:-3],
+                        ),
+                        orientation="vertical"
+                    ),
+                    size_hint=(None, None),
+                    height="55dp",
+                    width="60dp",
+                )
+            )
 
 class NavBar(CommonElevationBehavior, MDFloatLayout):
     pass

@@ -10,7 +10,7 @@
             size_hint: 1, 1
             MDBoxLayout:
                 size_hint: 1, None
-                height: "80dp"
+                height: "60dp"
                 pos_hint: {"top": 1}
                 padding: "15dp"
                 orientation: "horizontal"
@@ -38,7 +38,30 @@
                     spacing: "20dp"
                     padding: "10dp"
                     MDCard:
-                        size_hint: .9, .5
+                        size_hint: .98, None
+                        pos_hint: {"center_x": .5}
+                        height: "300dp"
+                        radius: "20dp"
+                        padding: "10dp"
+                        orientation: "vertical"
+                        MDLabel:
+                            text: "Good evening user"
+                            font_style: "H4"
+                        MDLabel:
+                            text: "21:45.00"
+                            font_style: "H3"
+                        MDLabel:
+                            text: "Tuesday"
+                            font_style: "H5"
+                        ScrollView:
+                            do_scroll_x: True
+                            bar_width: 0
+                            MDBoxLayout:
+                                id: plays
+                                height: "60dp"
+                                adaptive_width: True
+
+
                     MDLabel:
                         text: "Favorites"
                         text_color: [1, 1, 1, 1]
@@ -68,8 +91,7 @@
                         adaptive_height: True
                         id: playlists
                         cols: 2
-                        cols_minimum: {0: 170, 1: 170}
-
+                        cols_minimum: {0: 160, 1: 160}
 
             MDBoxLayout:
                 size_hint: 1, .1
@@ -77,13 +99,9 @@
                 spacing: root.width / 8
                 MDIconButton:
                     icon: "magnify"
-                    pos_hint: {"center_X": .2}
                 MDIconButton:
                     icon: "play-circle-outline"
-                    pos_hint: {"center_X": .4}
                 MDIconButton:
                     icon: "music-circle-outline"
-                    pos_hint: {"right": .6}
                 MDIconButton:
                     icon: "menu"
-                    pos_hint: {"right": .8}
