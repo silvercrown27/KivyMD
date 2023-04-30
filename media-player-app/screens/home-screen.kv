@@ -14,7 +14,6 @@
                 pos_hint: {"top": 1}
                 padding: "15dp"
                 orientation: "horizontal"
-
                 MDLabel:
                     text: "Good Morning"
                     font_style: "H5"
@@ -29,40 +28,41 @@
                         radius: 36, 36, 36, 36
                         pos_hint: {"center_y": .5}
 
-            MDBoxLayout:
-                adaptive_height: True
-                orientation: "vertical"
-                pos_hint: {'top': .9}
-                spacing: "20dp"
-                padding: "10dp"
-                MDLabel:
-                    text: "Favorites"
-                    text_color: [1, 1, 1, 1]
-                MDGridLayout:
-                    id: fav_places
+            ScrollView:
+                do_scroll_y: True
+                bar_width: 0
+                MDBoxLayout:
                     adaptive_height: True
-                    spacing: "5dp"
-                    size_hint: 1, None
-                    cols: 2
+                    orientation: "vertical"
+                    pos_hint: {'top': .9}
+                    spacing: "20dp"
+                    padding: "10dp"
+                    MDCard:
+                        size_hint: .9, .5
+                    MDLabel:
+                        text: "Favorites"
+                        text_color: [1, 1, 1, 1]
+                    MDGridLayout:
+                        id: fav_places
+                        adaptive_height: True
+                        spacing: "5dp"
+                        size_hint: 1, None
+                        cols: 2
 
-                MDLabel:
-                    text: 'recents'
-                    text_color: [1, 1, 1, 1]
-                ScrollView:
-                    bar_width: 0
-                    size_hint_y: None
-                    height: "150dp"
-                    MDBoxLayout:
-                        id:recents_bar
-                        adaptive_width:True,
-                        spacing: "15dp"
+                    MDLabel:
+                        text: 'recents'
+                        text_color: [1, 1, 1, 1]
+                    ScrollView:
+                        bar_width: 0
+                        size_hint_y: None
+                        height: "150dp"
+                        MDBoxLayout:
+                            id:recents_bar
+                            adaptive_width:True,
+                            spacing: "15dp"
 
-                MDLabel:
-                    text: "Playlists"
-                ScrollView:
-                    size_hint_y: None
-                    height: "275dp"
-                    bar_width: 0
+                    MDLabel:
+                        text: "Playlists"
                     MDGridLayout:
                         spacing: "8dp"
                         adaptive_height: True
@@ -70,43 +70,20 @@
                         cols: 2
                         cols_minimum: {0: 170, 1: 170}
 
-            NavBar:
-                radius: [14]
-                elevation: 4
-                size_hint: .95, .06
-                md_bg_color: 1, 1, 1, 1
-                pos_hint: {"center_x": .5, "center_y": .07}
-                MDGridLayout:
-                    cols: 5
-                    spacing: "17dp"
-                    pos_hint: {"center_x": .5, "center_y": .55}
-                    MDIconButton:
-                        id: nav_icon1
-                        icon: "home"
-                        ripple_scale: 3
-                        user_font_size: "50sp"
-                        theme_text_color: "Custom"
-                    MDIconButton:
-                        id: nav_icon1
-                        icon: "home"
-                        ripple_scale: 0
-                        user_font_size: "50sp"
-                        theme_text_color: "Custom"
-                    MDIconButton:
-                        id: nav_icon1
-                        icon: "home"
-                        ripple_scale: 0
-                        user_font_size: "70sp"
-                        theme_text_color: "Custom"
-                    MDIconButton:
-                        id: nav_icon1
-                        icon: "home"
-                        ripple_scale: 0
-                        user_font_size: "50sp"
-                        theme_text_color: "Custom"
-                    MDIconButton:
-                        id: nav_icon1
-                        icon: "home"
-                        ripple_scale: 0
-                        user_font_size: "50sp"
-                        theme_text_color: "Custom"
+
+            MDBoxLayout:
+                size_hint: 1, .1
+                pos_hint: {"top": .2}
+                spacing: root.width / 8
+                MDIconButton:
+                    icon: "magnify"
+                    pos_hint: {"center_X": .2}
+                MDIconButton:
+                    icon: "play-circle-outline"
+                    pos_hint: {"center_X": .4}
+                MDIconButton:
+                    icon: "music-circle-outline"
+                    pos_hint: {"right": .6}
+                MDIconButton:
+                    icon: "menu"
+                    pos_hint: {"right": .8}
