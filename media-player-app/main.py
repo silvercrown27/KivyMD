@@ -59,6 +59,7 @@ class MainApp(MDApp):
 
         # Loading the main app
         self.wm = MainScreen()
+        self.sound = None
 
         screens = [
             homescreen.HomeScreen(name="HomeScreen"),
@@ -75,6 +76,7 @@ class MainApp(MDApp):
 
         homescreen.HomeScreen.my_widgets(self)
         musicwindow.MusicWindow.my_widgets(self)
+        picturesWindow.PicturesWindow.my_widgets(self)
 
         return self.wm
 
@@ -85,6 +87,8 @@ class MainApp(MDApp):
 
     def play_audio(self, media_dir, media_file):
         def inner(obj):
+            if self.sound:
+                self.sound.stop()
             self.sound = SoundLoader.load(os.path.join(media_dir, media_file))
             if self.sound:
                 self.sound.play()

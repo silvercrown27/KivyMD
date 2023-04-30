@@ -1,107 +1,102 @@
 <HomeScreen>:
-    MDScrollView:
-        id: bar
-        do_scroll_y: True
-        do_scroll_x: False
-        effect_cls: "ScrollEffect"
-        bar_width: 0
+    MDBoxLayout:
+        orientation: "vertical"
+        size_hint: 1, 1
         MDBoxLayout:
-            orientation: "vertical"
-            size_hint: 1, 1
-            MDBoxLayout:
-                size_hint: 1, None
-                height: "60dp"
-                pos_hint: {"top": 1}
-                padding: "15dp"
-                orientation: "horizontal"
-                MDLabel:
-                    text: "Good Morning"
-                    font_style: "H5"
-                MDCard:
-                    size_hint: None, None
-                    size: "35dp", "35dp"
-                    md_bg_color: [0, 0, 0, 0]
+            size_hint: 1, None
+            height: "60dp"
+            pos_hint: {"top": 1}
+            padding: "15dp"
+            orientation: "horizontal"
+            MDLabel:
+                text: "Good Morning"
+                font_style: "H5"
+            MDCard:
+                size_hint: None, None
+                size: "35dp", "35dp"
+                md_bg_color: [0, 0, 0, 0]
+                pos_hint: {"center_y": .5}
+                FitImage:
+                    source: "img/profile.jfif"
+                    size_hint: .75, .85
+                    radius: 36, 36, 36, 36
                     pos_hint: {"center_y": .5}
-                    FitImage:
-                        source: "img/profile.jfif"
-                        size_hint: .75, .85
-                        radius: 36, 36, 36, 36
-                        pos_hint: {"center_y": .5}
 
-            ScrollView:
-                do_scroll_y: True
-                bar_width: 0
-                MDBoxLayout:
-                    adaptive_height: True
-                    orientation: "vertical"
-                    pos_hint: {'top': .9}
-                    spacing: "20dp"
-                    padding: "10dp"
-                    MDCard:
-                        size_hint: .98, None
-                        pos_hint: {"center_x": .5}
-                        height: "300dp"
-                        radius: "20dp"
-                        padding: "10dp"
-                        orientation: "vertical"
-                        MDLabel:
-                            text: "Good evening user"
-                            font_style: "H4"
-                        MDLabel:
-                            text: "21:45.00"
-                            font_style: "H3"
-                        MDLabel:
-                            text: "Tuesday"
-                            font_style: "H5"
-                        ScrollView:
-                            do_scroll_x: True
-                            bar_width: 0
-                            MDBoxLayout:
-                                id: plays
-                                height: "60dp"
-                                adaptive_width: True
-
-
-                    MDLabel:
-                        text: "Favorites"
-                        text_color: [1, 1, 1, 1]
-                    MDGridLayout:
-                        id: fav_places
-                        adaptive_height: True
-                        spacing: "5dp"
-                        size_hint: 1, None
-                        cols: 2
-
-                    MDLabel:
-                        text: 'recents'
-                        text_color: [1, 1, 1, 1]
-                    ScrollView:
-                        bar_width: 0
-                        size_hint_y: None
-                        height: "150dp"
-                        MDBoxLayout:
-                            id:recents_bar
-                            adaptive_width:True,
-                            spacing: "15dp"
-
-                    MDLabel:
-                        text: "Playlists"
-                    MDGridLayout:
-                        spacing: "8dp"
-                        adaptive_height: True
-                        id: playlists
-                        cols: 2
-                        cols_minimum: {0: 160, 1: 160}
-
+        ScrollView:
+            do_scroll_y: True
+            bar_width: 0
             MDBoxLayout:
-                size_hint: 1, .1
-                pos_hint: {"top": .2}
-                spacing: root.width / 8
-                MDIconButton:
-                    icon: "magnify"
-                MDIconButton:
-                    icon: "play-circle-outline"
-                MDIconButton:
-                    icon: "music-circle-outline"
-                MDIconButton:
-                    icon: "menu"
+                adaptive_height: True
+                orientation: "vertical"
+                pos_hint: {'top': .9}
+                spacing: "20dp"
+                padding: "10dp"
+                MDCard:
+                    size_hint: .98, None
+                    pos_hint: {"center_x": .5}
+                    elevation: 4
+                    height: "300dp"
+                    radius: "20dp"
+                    padding: "10dp"
+                    orientation: "vertical"
+                    MDLabel:
+                        text: "Good evening user"
+                        font_style: "H4"
+                    MDLabel:
+                        text: "21:45.00"
+                        font_style: "H3"
+                    MDLabel:
+                        text: "Tuesday"
+                        font_style: "H5"
+                    ScrollView:
+                        do_scroll_x: True
+                        bar_width: 0
+                        MDBoxLayout:
+                            id: plays
+                            height: "60dp"
+                            adaptive_width: True
+
+
+                MDLabel:
+                    text: "Favorites"
+                    text_color: [1, 1, 1, 1]
+                MDGridLayout:
+                    id: fav_places
+                    adaptive_height: True
+                    spacing: "5dp"
+                    size_hint: 1, None
+                    cols: 2
+
+                MDLabel:
+                    text: 'recents'
+                    text_color: [1, 1, 1, 1]
+                ScrollView:
+                    bar_width: 0
+                    size_hint_y: None
+                    height: "150dp"
+                    MDBoxLayout:
+                        id:recents_bar
+                        adaptive_width:True,
+                        spacing: "15dp"
+
+                MDLabel:
+                    text: "Playlists"
+                MDGridLayout:
+                    spacing: "8dp"
+                    adaptive_height: True
+                    id: playlists
+                    cols: 2
+                    cols_minimum: {0: 160, 1: 160}
+
+        MDBoxLayout:
+            size_hint: 1, .1
+            pos_hint: {"top": .2}
+            spacing: root.width / 8
+            MDIconButton:
+                icon: "magnify"
+            MDIconButton:
+                icon: "play-circle-outline"
+            MDIconButton:
+                icon: "music-circle-outline"
+            MDIconButton:
+                icon: "menu"

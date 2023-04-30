@@ -31,7 +31,7 @@ class HomeScreen(MDScreen):
                             source=img,
                         ),
                         MDLabel(
-                            text=img,
+                            text=img[4:-3],
                         ),
                         orientation="horizontal",
                     ),
@@ -54,7 +54,7 @@ class HomeScreen(MDScreen):
                             source=img,
                         ),
                         MDLabel(
-                            text=img,
+                            text=img[4:-3],
                         ),
                         orientation="vertical"
                     ),
@@ -77,7 +77,7 @@ class HomeScreen(MDScreen):
                             source=img,
                         ),
                         MDLabel(
-                            text=img,
+                            text=img[4:-3],
                         ),
                         orientation="vertical"
                     ),
