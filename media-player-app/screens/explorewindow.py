@@ -1,8 +1,6 @@
 import os
 
 from kivy.core.window import Window
-from kivy.lang import Builder
-
 from kivymd.uix.filemanager import MDFileManager
 from kivymd.toast import toast
 from kivymd.uix.screen import MDScreen
@@ -18,14 +16,14 @@ class ExploreWindow(MDScreen):
         )
 
     def file_manager_open(self):
-        self.file_manager.show(os.path.expanduser("~"))  # output manager to the screen
+        self.file_manager.show('/')  # output manager to the screen
         self.manager_open = True
 
-    def select_path(self, path: str):
-        '''
-        It will be called when you click on the file name
+    def select_path(self, path):
+        '''It will be called when you click on the file name
         or the catalog selection button.
 
+        :type path: str;
         :param path: path to the selected directory or file;
         '''
 

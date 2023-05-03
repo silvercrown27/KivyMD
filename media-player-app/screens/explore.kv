@@ -28,17 +28,16 @@
             MDBoxLayout:
                 adaptive_height: True
                 orientation: "vertical"
-                pos_hint: {'top': .9}
                 spacing: "20dp"
                 padding: "10dp"
 
-                MDFloatLayout:
-
+                MDBoxLayout:
+                    orientation: "vertical"
                     MDRoundFlatIconButton:
                         text: "Open manager"
-                        text_color: [0, 1, 1, 0]
+                        md_bg_color: app.theme_cls.primary_color
                         icon: "folder"
-                        pos_hint: {"center_x": .5, "center_y": .5}
+                        pos_hint: {"center_x": .5}
                         on_release: root.file_manager_open()
 
 

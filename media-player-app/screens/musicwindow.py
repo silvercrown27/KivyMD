@@ -1,5 +1,6 @@
 import os
 
+from kivymd.toast import toast
 from kivymd.uix.list import TwoLineAvatarIconListItem, IconLeftWidget, IconRightWidget
 
 from kivymd.uix.tab import MDTabsBase
@@ -13,15 +14,19 @@ class Tab(MDFloatLayout, MDTabsBase):
 
 class MusicWindow(MDScreen):
     def my_widgets(self):
-        media_dir = f"C://Users/USER/Documents/GitHub/media/"
-        mymedia = []
+        # scan for media files when the user enters the screen
+        media_extensions = ('.mp3', '.wav', '.ogg')  # add other extensions if needed
+        media_files = []
 
-        for filename in os.listdir(media_dir):
-            f = filename
-            if f.endswith('.mp3'):
-                mymedia.append(f)
+        # traverse directory tree and find all media files
+        for dirpath, dirnames, filenames in os.walk('C:/Users/USER/Documents/GitHub/') or os.walk('/'):
+            for filename in filenames:
+                if filename.endswith(media_extensions):
+                    media_files.append(os.path.join(dirpath, filename))
 
-        for m in mymedia:
+        # add each media file as a widget to the tracks list
+        for filepath in media_files:
+            filename = os.path.basename(filepath)
             self.wm.ids.WindowManager.screens[1].ids.tracks.add_widget(
                 TwoLineAvatarIconListItem(
                     IconLeftWidget(
@@ -30,7 +35,7 @@ class MusicWindow(MDScreen):
                     IconRightWidget(
                         icon="dots-vertical",
                     ),
-                    text=m,
-                    on_release=self.play_audio(media_dir, m),
+                    text=filename,
+                    on_release=lambda filepath=filepath: self.play_audio(filepath),
                 )
             )

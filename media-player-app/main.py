@@ -74,9 +74,9 @@ class MainApp(MDApp):
         for screen in screens:
             self.wm.ids.WindowManager.add_widget(screen)
 
-        homescreen.HomeScreen.my_widgets(self)
-        musicwindow.MusicWindow.my_widgets(self)
-        picturesWindow.PicturesWindow.my_widgets(self)
+        homescreen.HomeScreen.on_enter(homescreen.HomeScreen.my_widgets(self))
+        musicwindow.MusicWindow.on_enter(musicwindow.MusicWindow.my_widgets(self))
+        picturesWindow.PicturesWindow.on_enter(picturesWindow.PicturesWindow.my_widgets(self))
 
         return self.wm
 
