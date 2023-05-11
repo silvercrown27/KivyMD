@@ -1,4 +1,7 @@
 # import required kivy packages
+import threading
+
+from kivy.app import App
 from kivy.clock import Clock
 from kivy.core.audio import SoundLoader
 from kivy.lang import Builder
@@ -46,21 +49,23 @@ class DrawerClickableItem(MDNavigationDrawerItem):
         self.ripple_color = "#c5bdd2"
         self.selected_color = "#0c6c4d"
 
-
 class MainApp(MDApp):
     def build(self):
+        # Set up theme and title
         self.theme_cls.material_style = "M2"
         self.theme_cls.primary_palette = "Cyan"
         self.theme_cls.accent_palette = "Cyan"
         self.theme_cls.accent_hue = "700"
         self.title = "Media Portal"
 
+        # Bind window resize event
         Window.bind(on_resize=self.on_window_resize)
 
-        # Loading the main app
+        # Load the main screen
         self.wm = MainScreen()
         self.sound = None
 
+        # Create screens and add them to the WindowManager
         screens = [
             homescreen.HomeScreen(name="HomeScreen"),
             musicwindow.MusicWindow(name="MusicWindow"),
@@ -74,10 +79,11 @@ class MainApp(MDApp):
         for screen in screens:
             self.wm.ids.WindowManager.add_widget(screen)
 
-        homescreen.HomeScreen.on_enter(homescreen.HomeScreen.my_widgets(self))
-        musicwindow.MusicWindow.on_enter(musicwindow.MusicWindow.my_widgets(self))
-        picturesWindow.PicturesWindow.on_enter(picturesWindow.PicturesWindow.my_widgets(self))
+        # load the homescreen on appstart
+        home_screen = homescreen.HomeScreen()
+        home_screen.my_widgets(App.get_running_app())
 
+        # Return the main screen
         return self.wm
 
     def on_window_resize(self, window, width, height):
@@ -85,15 +91,17 @@ class MainApp(MDApp):
         self.root.size = (width, height)
         self.root.pos = (0, 0)
 
-    def play_audio(self, media_dir, media_file):
-        def inner(obj):
-            if self.sound:
-                self.sound.stop()
-            self.sound = SoundLoader.load(os.path.join(media_dir, media_file))
-            if self.sound:
-                self.sound.play()
+    def play_audio(self, media_dir, next_track=None):
+        if self.sound:
+            self.sound.stop()
+        self.sound = SoundLoader.load(media_dir)
+        if self.sound:
+            self.sound.play()
+            self.sound.bind(on_stop=lambda instance: self.on_track_finished(next_track))
 
-        return inner
+    def on_track_finished(self, next_track):
+        if next_track:
+            self.play_audio(next_track)
 
     # def on_start(self):
     #     self.wm.ids.WindowManager.current = "Splash"
