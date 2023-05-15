@@ -117,18 +117,15 @@ class MainApp(MDApp):
 
 
 if __name__ == "__main__":
-    def check_for_data():
-        try:
-            mydb = sqlite3.connect("db.sqlite3")
-            mycursor = mydb.cursor()
-            mycursor.execute("SELECT COUNT(*) FROM folders")
-            result = mycursor.fetchone()
-            mydb.close()
-            return result[0] > 0
-        except:
-            return 0
 
-    if not check_for_data():
+    try:
+        mydb = sqlite3.connect("db.sqlite3")
+        mycursor = mydb.cursor()
+        mycursor.execute("SELECT COUNT(*) FROM folders")
+        result = mycursor.fetchone()
+        mydb.close()
+
+    except:
         from db.db import create_database
         create_database()
 

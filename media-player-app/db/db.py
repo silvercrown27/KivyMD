@@ -2,7 +2,7 @@ import sqlite3
 import os
 import psutil
 
-async def create_database():
+def create_database():
     mydb = sqlite3.connect("db.sqlite3")
 
     mycursor = mydb.cursor()
