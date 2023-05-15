@@ -127,8 +127,6 @@ if __name__ == "__main__":
             result = mycursor.fetchone()
             mydb.close()
             return result[0] > 0
-        except:
-            return 0
 
     if not check_for_data():
         from db.db import create_database
