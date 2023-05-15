@@ -2,7 +2,7 @@ import sqlite3
 import os
 import psutil
 
-def create_database():
+async def create_database():
     mydb = sqlite3.connect("db.sqlite3")
 
     mycursor = mydb.cursor()
@@ -39,7 +39,6 @@ def create_database():
         except PermissionError:
             return 0
 
-
     for partition in psutil.disk_partitions():
         if 'cdrom' in partition.opts or partition.fstype == '':
             # skip CD-ROM drives and unmounted partitions
@@ -72,6 +71,7 @@ def create_database():
             dirid = None if dirid_row is None else dirid_row[0]
             mycursor.execute("INSERT INTO files (name, ext, size, path, folder_id) VALUES (?, ?, ?, ?, ?)",
                              (name, ext, size, file_path, dirid))
+
     def check_for_duplicates(table, column1, column2):
         data = mycursor.execute(f"SELECT {column1} FROM {table}")
         data = data.fetchall()

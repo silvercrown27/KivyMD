@@ -28,7 +28,7 @@ class MusicWindow(MDScreen):
         self.ids.tracks.clear_widgets()
 
     def scan_media_files(self, app):
-        def add_widget(filepath, next_track):
+        def add_widget(filepath, media, curr_iter):
             filename = os.path.basename(filepath)
             self.ids.tracks.add_widget(
                 TwoLineAvatarIconListItem(
@@ -39,13 +39,11 @@ class MusicWindow(MDScreen):
                         icon="dots-vertical",
                     ),
                     text=filename,
-                    on_release=lambda btn, filepath=filepath: app.play_audio(filepath, next_track)
+                    on_release=lambda btn, media_dirs=media, curr_iter=curr_iter: app.play_audio(media_dirs, curr_iter)
                 )
             )
 
-        media = [d for i in media_extensions for d in search(i, folder_id)]
+        media = [d[1] for i in media_extensions for d in search(i, folder_id)]
         for i, filepath in enumerate(media[:-1]):
-            next_track = media[i+1][1]
-            Clock.schedule_once(lambda dt, filepath=filepath[1], next_track=next_track: add_widget(filepath, next_track), i * 0.05)
-        # add the last track without a next track
-        Clock.schedule_once(lambda dt, filepath=media[-1][1]: add_widget(filepath, None), (len(media)-1) * 0.05)
+            Clock.schedule_once(lambda dt, filepath=filepath, curr_iter=i: add_widget(filepath, media, curr_iter),
+                                i * 0.03)

@@ -93,17 +93,15 @@ class MainApp(MDApp):
         self.root.size = (width, height)
         self.root.pos = (0, 0)
 
-    def play_audio(self, media_dir, next_track=None):
+    def play_audio(self, media_dirs, curr_iter=0, next_track=None):
+        if curr_iter >= len(media_dirs):
+            curr_iter = 0
         if self.sound:
             self.sound.stop()
-        self.sound = SoundLoader.load(media_dir)
+        self.sound = SoundLoader.load(media_dirs[curr_iter])
         if self.sound:
             self.sound.play()
-            self.sound.bind(on_stop=lambda instance: self.on_track_finished(next_track))
-
-    def on_track_finished(self, next_track):
-        if next_track:
-            self.play_audio(next_track)
+            self.sound.bind(on_stop=lambda instance: self.play_audio(media_dirs, curr_iter + 1))
 
     def pause_music(self):
         if self.sound is not None and self.sound.state == 'play':
@@ -127,6 +125,8 @@ if __name__ == "__main__":
             result = mycursor.fetchone()
             mydb.close()
             return result[0] > 0
+        except:
+            return 0
 
     if not check_for_data():
         from db.db import create_database
