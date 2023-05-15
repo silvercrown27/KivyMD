@@ -1,5 +1,5 @@
-# import required kivy packages
-import threading
+# import required packages
+import sqlite3
 
 from kivy.app import App
 from kivy.clock import Clock
@@ -14,7 +14,7 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.navigationdrawer.navigationdrawer import MDNavigationDrawerItem
 # import other dependencies
 from screens import homescreen, musicwindow, videoswindow, picturesWindow, libraryWindow, explorewindow, menuscreen
-import os
+
 
 Window.size = (348, 688)
 
@@ -35,6 +35,7 @@ class Splash(MDScreen):
     def switch_to_home(self, dt):
         self.manager.current = "HomeScreen"
 
+
 class MainScreen(Screen):
     ''''''
 
@@ -49,13 +50,14 @@ class DrawerClickableItem(MDNavigationDrawerItem):
         self.ripple_color = "#c5bdd2"
         self.selected_color = "#0c6c4d"
 
+
 class MainApp(MDApp):
     def build(self):
         # Set up theme and title
         self.theme_cls.material_style = "M2"
-        self.theme_cls.primary_palette = "Cyan"
-        self.theme_cls.accent_palette = "Cyan"
-        self.theme_cls.accent_hue = "700"
+        self.theme_cls.primary_palette = "Green"
+        self.theme_cls.accent_palette = "Green"
+        self.theme_cls.accent_hue = "A700"
         self.title = "Media Portal"
 
         # Bind window resize event
@@ -103,9 +105,33 @@ class MainApp(MDApp):
         if next_track:
             self.play_audio(next_track)
 
-    # def on_start(self):
-    #     self.wm.ids.WindowManager.current = "Splash"
+    def pause_music(self):
+        if self.sound is not None and self.sound.state == 'play':
+            self.paused_pos = self.sound.get_pos()  # get the current position
+            self.sound.stop()  # stop the music
+
+    def continue_music(self):
+        if self.sound is not None and self.sound.state == 'stop':
+            self.sound.play(seek=self.paused_pos)
+
+    def on_start(self):
+        self.wm.ids.WindowManager.current = "Splash"
 
 
 if __name__ == "__main__":
+    def check_for_data():
+        try:
+            mydb = sqlite3.connect("db.sqlite3")
+            mycursor = mydb.cursor()
+            mycursor.execute("SELECT COUNT(*) FROM folders")
+            result = mycursor.fetchone()
+            mydb.close()
+            return result[0] > 0
+        except:
+            return 0
+
+    if not check_for_data():
+        from db.db import create_database
+        create_database()
+
     MainApp().run()

@@ -1,0 +1,20 @@
+{
+  "morning": [
+    "Good morning!",
+    "Rise and shine!",
+    "Top of the morning to you!",
+    "A new day has begun!"
+  ],
+  "afternoon": [
+    "Good afternoon!",
+    "Hope you're having a great day!",
+    "It's the perfect time for a lunch break!",
+    "Time to recharge for the rest of the day!"
+  ],
+  "evening": [
+    "Good evening!",
+    "Hope you had a productive day!",
+    "It's time to wind down and relax!",
+    "Make the most of your evening!"
+  ]
+}

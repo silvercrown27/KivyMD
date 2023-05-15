@@ -30,15 +30,15 @@
                 orientation: "vertical"
                 spacing: "20dp"
                 padding: "10dp"
-
-                MDBoxLayout:
-                    orientation: "vertical"
-                    MDRoundFlatIconButton:
-                        text: "Open manager"
-                        md_bg_color: app.theme_cls.primary_color
-                        icon: "folder"
-                        pos_hint: {"center_x": .5}
+                MDList:
+                    TwoLineRightIconListItem:
+                        text: "Internal Storage"
+                        secondary_text: "Browse all your files here..."
                         on_release: root.file_manager_open()
+
+                        IconRightWidget:
+                            icon: "folder-outline"
+                            on_release: root.file_manager_open()
 
 
         MDBoxLayout:
@@ -52,4 +52,5 @@
             MDIconButton:
                 icon: "music-circle-outline"
             MDIconButton:
-                icon: "menu"
+                icon: "home"
+                on_press:root.ids.WindowManager.current = "HomeScreen"

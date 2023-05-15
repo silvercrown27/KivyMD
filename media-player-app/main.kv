@@ -1,9 +1,9 @@
-#:import SwapTransition kivy.uix.screenmanager.SwapTransition
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
 #:import get_color_from_hex kivy.utils.get_color_from_hex
 #:import Gradient kivy_gradient.Gradient
 
 <Splash>:
-    md_bg_color: [0, 100, 100, 1]
+    md_bg_color: [0, 128, 0, 1]
     on_enter:self.ids.progress.start()
     MDFloatLayout:
         Image:
@@ -30,13 +30,13 @@
         Rectangle:
             size: self.size
             pos: self.pos
-            texture: Gradient.vertical(get_color_from_hex("#F58544"), get_color_from_hex("#00FFFF"))
+            texture: Gradient.vertical(get_color_from_hex("#00bb41"), get_color_from_hex("#00ab3b"))
 
     MDNavigationLayout:
 
         ScreenManager:
             id: WindowManager
-            transition: SwapTransition()
+            transition: FadeTransition()
 
         MDNavigationDrawer:
             id: nav_drawer

@@ -5,7 +5,6 @@ from kivymd.uix.filemanager import MDFileManager
 from kivymd.toast import toast
 from kivymd.uix.screen import MDScreen
 
-
 class ExploreWindow(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

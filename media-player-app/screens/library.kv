@@ -39,7 +39,10 @@
                 icon: "magnify"
             MDIconButton:
                 icon: "play-circle-outline"
+                on_press: app.wm.ids.WindowManager.current = "VideosWindow"
             MDIconButton:
                 icon: "music-circle-outline"
+                on_press: app.wm.ids.WindowManager.current = "MusicWindow"
             MDIconButton:
-                icon: "menu"
+                icon: "home"
+                on_press: app.wm.ids.WindowManager.current = "HomeScreen"

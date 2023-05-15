@@ -2,9 +2,15 @@
     MDBoxLayout:
         orientation: "vertical"
         spacing: "5dp"
-        MDTopAppBar:
-            title: "Your Music"
+        MDBoxLayout:
+            size_hint: 1, None
+            height: "60dp"
+            pos_hint: {"top": 1}
+            padding: "15dp"
             orientation: "horizontal"
+            MDLabel:
+                text: "Your Space"
+                font_style: "H5"
             MDCard:
                 size_hint: None, None
                 size: "35dp", "35dp"
@@ -25,8 +31,6 @@
                     bar_width: 0
                     MDList:
                         id: tracks
-
-
 
             Tab:
                 title: "playlist"
@@ -57,7 +61,6 @@
                         adaptive_height: True
 
 
-
         MDBoxLayout:
             size_hint: 1, .1
             pos_hint: {"top": .2}
@@ -66,9 +69,12 @@
                 icon: "magnify"
             MDIconButton:
                 icon: "play-circle-outline"
+                on_press: app.wm.ids.WindowManager.current = "VideosWindow"
             MDIconButton:
                 icon: "music-circle-outline"
+                on_press: app.wm.ids.WindowManager.current = "MusicWindow"
             MDIconButton:
-                icon: "menu"
+                icon: "home"
+                on_press: app.wm.ids.WindowManager.current = "HomeScreen"
 
 <Tab>
