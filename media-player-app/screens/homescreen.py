@@ -1,5 +1,4 @@
-import os
-import json
+from json import load
 from datetime import datetime
 from .tools import search
 
@@ -18,7 +17,7 @@ day = datetime.today().strftime("%A")
 time = datetime.now()
 
 with open('db/greet.json', 'r') as f:
-    greet = json.load(f)
+    greet = load(f)
 
 if time.hour < 12:
     greeting = greet['morning'][0]
@@ -51,15 +50,17 @@ class HomeScreen(MDScreen):
 
     def my_widgets(self, app):
         img_ext = ['.jpg', '.png', '.jfif']
-        img_list = [d for i in img_ext for d in search(i)]
-        print(img_list)
+        img_list = set([d for i in img_ext for d in search(i)])
 
         fav_places = app.wm.ids.WindowManager.screens[0].ids.fav_places
         recents_bar = app.wm.ids.WindowManager.screens[0].ids.recents_bar
         playlists = app.wm.ids.WindowManager.screens[0].ids.playlists
         plays = app.wm.ids.WindowManager.screens[0].ids.plays
 
-        for img in img_list[-6:]:
+        img_list = set(img_list)
+        img_list = [(img[0][:10], img[1]) for img in img_list]
+
+        for img in img_list[12:18]:
             fav_places.add_widget(
                 MDCard(
                     MDBoxLayout(
@@ -142,3 +143,119 @@ class HomeScreen(MDScreen):
 
 class NavBar(CommonElevationBehavior, MDFloatLayout):
     pass
+
+"""
+class HomeScreen(MDScreen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        Clock.schedule_interval(self.update_time, 1)
+
+    def on_enter(self, *args):
+        app = App.get_running_app()
+        app.wm.ids.WindowManager.screens[0].ids.greet.text = greeting
+        app.wm.ids.WindowManager.screens[0].ids.user.text = "bradley"
+        self.update_time()
+        app.wm.ids.WindowManager.screens[0].ids.day.text = day
+
+    def on_leave(self, *args):
+        app = App.get_running_app()
+        
+    def update_time(self, *args):
+        app = App.get_running_app()
+        app.wm.ids.WindowManager.screens[0].ids.time.text = str(datetime.now().strftime("%H:%M:%S"))
+
+    def my_widgets(self, app):
+        img_ext = ['.jpg', '.png', '.jfif']
+        img_list = set([d for i in img_ext for d in search(i)])
+
+        fav_places = app.wm.ids.WindowManager.screens[0].ids.fav_places
+        recents_bar = app.wm.ids.WindowManager.screens[0].ids.recents_bar
+        playlists = app.wm.ids.WindowManager.screens[0].ids.playlists
+        plays = app.wm.ids.WindowManager.screens[0].ids.plays
+
+        img_list = set(img_list)
+        img_list = [(img[0][:10], img[1]) for img in img_list]
+
+        for img in img_list[12:18]:
+            fav_places.add_widget(
+                MDCard(
+                    MDBoxLayout(
+                        FitImage(
+                            size_hint=(None, None),
+                            height="45dp",
+                            width="50dp",
+                            source=img[1],
+                        ),
+                        MDLabel(
+                            text=img[0],
+                        ),
+                        orientation="horizontal",
+                    ),
+                    size_hint=(.4, None),
+                    height="45dp",
+                    spacing="20dp",
+                    focus_behavior=True,
+                    elevation=0,
+                )
+            )
+
+        def create_card(widget_id, img, height, width):
+            widget_id.add_widget(
+                MDCard(
+                    MDBoxLayout(
+                        FitImage(
+                            size_hint=(None, None),
+                            height=height,
+                            width=width,
+                            source=img[1],
+                        ),
+                        MDLabel(
+                            text=img[0],
+                        ),
+                        orientation="vertical"
+                    ),
+                    size_hint=(None, None),
+                    height=height + 30,
+                    width=width,
+                    spacing="15dp",
+                    focus_behavior=True,
+                    elevation=3,
+                )
+            )
+
+        def create_new_card(widget_id, img, height, width, radius=(0, 0, 0, 0)):
+            widget_id.add_widget(
+                MDCard(
+                    MDBoxLayout(
+                        FitImage(
+                            size_hint=(None, None),
+                            height=height,
+                            width=width / 1.5,
+                            radius=radius,
+                            source=img[1],
+                        ),
+                        MDLabel(
+                            text=img[0],
+                        ),
+                        orientation="vertical"
+                    ),
+                    size_hint=(None, None),
+                    height=height + 30,
+                    width=width,
+                    spacing="18dp",
+                    focus_behavior=True,
+                )
+            )
+
+        img_list = [(img[0][:10], img[1]) for img in img_list]
+
+        for img in img_list[:6]:
+            create_card(recents_bar, img, 150, 130)
+
+        for img in img_list[6:12]:
+            create_card(playlists, img, 150, 160)
+
+        for img in img_list[:6]:
+            create_new_card(plays, img, 36, 58, radius=(36, 36, 36, 36))
+
+"""

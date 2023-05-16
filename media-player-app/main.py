@@ -119,11 +119,10 @@ class MainApp(MDApp):
 if __name__ == "__main__":
 
     try:
-        mydb = sqlite3.connect("db.sqlite3")
-        mycursor = mydb.cursor()
-        mycursor.execute("SELECT COUNT(*) FROM folders")
-        result = mycursor.fetchone()
-        mydb.close()
+        with sqlite3.connect("db.sqlite3") as mydb:
+            mycursor = mydb.cursor()
+            mycursor.execute("SELECT COUNT(*) FROM folders")
+            result = mycursor.fetchone()
 
     except:
         from db.db import create_database
