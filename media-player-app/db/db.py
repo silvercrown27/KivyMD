@@ -48,7 +48,7 @@ def create_database():
         mycursor.execute("INSERT INTO drives (name, size) VALUES (?, ?)", (drive, total_size / (1024 ** 3)))
 
     # traverse directory tree and find all files
-    for dirpath, dirnames, filenames in os.walk('C:/Users/USER/Documents/GitHub') or os.walk('/'):
+    for dirpath, dirnames, filenames in os.walk('/'):
         directories = os.path.normpath(dirpath).split(os.sep)
         parent_dir, current_dir = os.path.split(dirpath)
 

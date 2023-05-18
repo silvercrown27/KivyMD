@@ -1,5 +1,6 @@
 <LibraryWindow>:
     MDBoxLayout:
+        id: page_start
         orientation: "vertical"
         size_hint: 1, 1
         MDBoxLayout:
@@ -30,19 +31,3 @@
                 pos_hint: {'top': .9}
                 spacing: "20dp"
                 padding: "10dp"
-
-        MDBoxLayout:
-            size_hint: 1, .1
-            pos_hint: {"top": .2}
-            spacing: root.width / 8
-            MDIconButton:
-                icon: "magnify"
-            MDIconButton:
-                icon: "play-circle-outline"
-                on_press: app.wm.ids.WindowManager.current = "VideosWindow"
-            MDIconButton:
-                icon: "music-circle-outline"
-                on_press: app.wm.ids.WindowManager.current = "MusicWindow"
-            MDIconButton:
-                icon: "home"
-                on_press: app.wm.ids.WindowManager.current = "HomeScreen"

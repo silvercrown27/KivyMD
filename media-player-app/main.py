@@ -107,8 +107,8 @@ class MainApp(MDApp):
         for screen in screens:
             self.wm.ids.WindowManager.add_widget(screen)
 
-        for screen in self.wm.ids.WindowManager.screens:
-            screen.add_widget(Bottom_Navigation())
+        for screen in self.wm.ids.WindowManager.screens[:-1]:
+            screen.ids.page_start.add_widget(Bottom_Navigation())
 
         # load the homescreen on appstart
         home_screen = homescreen.HomeScreen()
@@ -134,8 +134,8 @@ class MainApp(MDApp):
             self.sound.play()
 
         # Add MusicBar widget to all screens
-        for screen in self.wm.ids.WindowManager.screens:
-            screen.add_widget(MusicBar(track))
+        for screen in self.wm.ids.WindowManager.screens[:-1]:
+            screen.ids.page_start.add_widget(MusicBar(track))
         self.sound.bind(on_stop=lambda instance: self.play_audio(media_dirs, curr_iter + 1))
 
     def pause_music(self):

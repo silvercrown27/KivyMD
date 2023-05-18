@@ -1,5 +1,6 @@
 <ExploreWindow>:
     MDBoxLayout:
+        id: page_start
         orientation: "vertical"
         size_hint: 1, 1
         MDBoxLayout:
@@ -40,19 +41,3 @@
                         IconRightWidget:
                             icon: "folder-outline"
                             on_release: root.file_manager_open()
-
-
-
-        MDBoxLayout:
-            size_hint: 1, .1
-            pos_hint: {"top": .2}
-            spacing: root.width / 8
-            MDIconButton:
-                icon: "magnify"
-            MDIconButton:
-                icon: "play-circle-outline"
-            MDIconButton:
-                icon: "music-circle-outline"
-            MDIconButton:
-                icon: "home"
-                on_press:root.ids.WindowManager.current = "HomeScreen"
