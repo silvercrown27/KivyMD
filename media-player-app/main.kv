@@ -25,6 +25,29 @@
                 running_duration: 10
                 catching_duration: 1.2
 
+<loadingScreens>:
+    MDBoxLayout:
+        ScreenManager:
+            id: initialise
+            transition: FadeTransition()
+            MDScreen:
+                id: screen_init_1
+                MDBoxLayout:
+
+                    MDRectangleFlatIconButton:
+                        text: ""
+                        theme_text_color: "Custom"
+                        text_color: "white"
+                        line_color: "green"
+                        theme_icon_color: "Custom"
+                        icon_color: "white"
+                        md_bg_color: [1, 0, 0, 1]
+                        pos_hint: {"center_x":.5, "top":.1}
+
+            MDScreeb
+                id: screen_init_2
+
+
 <MainScreen>:
     canvas:
         Rectangle:
@@ -96,20 +119,91 @@
                         root.ids.nav_drawer.set_state("close")
                         root.ids.WindowManager.current = "MenuWindow"
 
-<PlayWindow>:
+<MusicBar>:
+    radius: [14]
+    elevation: 4
+    size_hint: .95, .1
+    height: dp(72)
+    md_bg_color: 1, 1, 1, 1
+    pos_hint: {"center_x": .5, "top": .215}
+    padding: dp(10)
 
+    MDBoxLayout:
+        orientation: "vertical"
+        size_hint_y: .05
+        height: dp(32)
+
+        MDProgressBar:
+            id: progress
+            orientation: "horizontal"
+            min: 0
+            max: 400
+
+    MDBoxLayout:
+        size_hint:1, .95
+        pos_hint: {"top": .315}
+        orientation: "horizontal"
+
+        MDBoxLayout:
+
+            FitImage:
+                id: progress_icon
+                size_hint: None, None
+                size: self.parent.height, self.parent.height
+                source: "components/user.jpg"
+
+        MDBoxLayout:
+            MDLabel:
+                id: playing
+                halign: "left"
+                valign: "center"
+                shorten: True
+                max_lines: 2
+
+        MDIconButton:
+            id: my_sound
+            icon: "skip-next-circle"
+            user_font_size: "40dp"
+            pos_hint: {"center_y": .5}
+            on_release:
+                if app.sound is not None and app.sound.state == 'play':app.pause_music()
+                elif app.sound is not None and app.sound.state == 'stop':app.continue_music()
+
+<Bottom_Navigation>:
+    size_hint: 1, .11
+    pos_hint: {"top": .11}
+    spacing: root.width / 8
+    md_bg_color: [0, 0 ,0 , .8]
     MDIconButton:
-        id: my_sound
-        icon: "pause" if root.progress else "play"
-        user_font_size: 150
-        pos: 100, 100
-        on_press:
-            root.play_sound()
+        icon: "search"
+        theme_icon_color: "Custom"
+        icon_color: app.theme_cls.primary_color
+        icon_size: "40sp"
+    MDIconButton:
+        icon: "play-circle-outline"
+        on_press: app.wm.ids.WindowManager.current = "VideosWindow"
+    MDIconButton:
+        icon: "music-circle-outline"
+        on_press: app.wm.ids.WindowManager.current = "MusicWindow"
+    MDIconButton:
+        icon: "home"
+        on_press: app.wm.ids.WindowManager.current = "HomeScreen"
 
-    MDProgressBar:
-        id: progress_bar
-        size_hint: .8, .5
-        pos: 90, 200
-        min: 0
-        max: root.length
-        value: root.progress
+
+<CustomImage>:
+    source: "../icons/splash.gif"
+    on_load: spinner.active = False
+
+    BoxLayout:
+        orientation: "vertical"
+
+        Spinner:
+            id: spinner
+            size_hint: None, None
+            size: dp(32), dp(32)
+            active: True
+
+        Image:
+            source: root.source
+            allow_stretch: True
+            keep_ratio: True

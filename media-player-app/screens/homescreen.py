@@ -1,8 +1,11 @@
+import random
 from json import load
 from datetime import datetime
+
+from kivymd.app import MDApp
+
 from .tools import search
 
-from kivy.app import App
 from kivy.clock import Clock
 
 from kivymd.uix.card import MDCard
@@ -10,8 +13,6 @@ from kivymd.uix.label import MDLabel
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.fitimage import FitImage
 from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.floatlayout import MDFloatLayout
-from kivymd.uix.behaviors import CommonElevationBehavior
 
 day = datetime.today().strftime("%A")
 time = datetime.now()
@@ -20,12 +21,13 @@ with open('db/greet.json', 'r') as f:
     greet = load(f)
 
 if time.hour < 12:
-    greeting = greet['morning'][0]
+    greeting = greet['morning']
 elif time.hour < 18:
-    greeting = greet['afternoon'][0]
+    greeting = greet['afternoon']
 else:
-    greeting = greet['evening'][0]
-
+    greeting = greet['evening']
+header = greeting[3]
+greeting = greeting[0]
 
 class HomeScreen(MDScreen):
     def __init__(self, **kwargs):
@@ -33,19 +35,20 @@ class HomeScreen(MDScreen):
         Clock.schedule_interval(self.update_time, 1)
 
     def on_enter(self, *args):
-        app = App.get_running_app()
+        app = MDApp.get_running_app()
+        app.wm.ids.WindowManager.screens[0].ids.topbar.text = header
         app.wm.ids.WindowManager.screens[0].ids.greet.text = greeting
         app.wm.ids.WindowManager.screens[0].ids.user.text = "bradley"
         self.update_time()
         app.wm.ids.WindowManager.screens[0].ids.day.text = day
 
-    def on_leave(self, *args):
-        app = App.get_running_app()
+    # def on_leave(self, *args):
+    #     app = MDApp.get_running_app()
         # app.wm.ids.WindowManager.screens[0].ids.recents_bar.clear_widgets()
         # app.wm.ids.WindowManager.screens[0].ids.playlists.clear_widgets()
 
     def update_time(self, *args):
-        app = App.get_running_app()
+        app = MDApp.get_running_app()
         app.wm.ids.WindowManager.screens[0].ids.time.text = str(datetime.now().strftime("%H:%M:%S"))
 
     def my_widgets(self, app):
@@ -140,7 +143,3 @@ class HomeScreen(MDScreen):
 
         for img in img_list[:6]:
             create_new_card(plays, img, 36, 54, radius=(36, 36, 36, 36))
-
-class NavBar(CommonElevationBehavior, MDFloatLayout):
-    pass
-

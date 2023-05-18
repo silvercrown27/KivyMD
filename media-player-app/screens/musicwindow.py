@@ -39,7 +39,7 @@ class MusicWindow(MDScreen):
                         icon="dots-vertical",
                     ),
                     text=filename,
-                    on_release=lambda btn, media_dirs=media, curr_iter=curr_iter: app.play_audio(media_dirs, curr_iter)
+                    on_press=lambda btn, media_dirs=media, curr_iter=curr_iter: app.play_audio(media_dirs, curr_iter)
                 )
             )
 

@@ -9,7 +9,7 @@
             padding: "15dp"
             orientation: "horizontal"
             MDLabel:
-                text: "Your Space"
+                id: topbar
                 font_style: "H5"
             MDCard:
                 size_hint: None, None
@@ -17,7 +17,7 @@
                 md_bg_color: [0, 0, 0, 0]
                 pos_hint: {"center_y": .5}
                 FitImage:
-                    source: "img/profile.jfif"
+                    source: "components/user.jpg"
                     size_hint: .75, .85
                     radius: 36, 36, 36, 36
                     pos_hint: {"center_y": .5}
@@ -92,19 +92,3 @@
                     id: playlists
                     cols: 2
                     cols_minimum: {0: 160, 1: 160}
-
-        MDBoxLayout:
-            size_hint: 1, .1
-            pos_hint: {"top": .2}
-            spacing: root.width / 8
-            MDIconButton:
-                icon: "magnify"
-            MDIconButton:
-                icon: "play-circle-outline"
-                on_press: app.wm.ids.WindowManager.current = "VideosWindow"
-            MDIconButton:
-                icon: "music-circle-outline"
-                on_press: app.wm.ids.WindowManager.current = "MusicWindow"
-            MDIconButton:
-                icon: "home"
-                on_press: app.wm.ids.WindowManager.current = "HomeScreen"

@@ -17,7 +17,7 @@
                 md_bg_color: [0, 0, 0, 0]
                 pos_hint: {"center_y": .5}
                 FitImage:
-                    source: "img/profile.jfif"
+                    source: "components/user.jpg"
                     size_hint: .75, .85
                     radius: 36, 36, 36, 36
                     pos_hint: {"center_y": .5}
@@ -26,6 +26,7 @@
             bar_width: 0
             do_scroll_y: True
             MDBoxLayout:
+                id: track_view
                 adaptive_height: True
                 orientation: "vertical"
                 spacing: "20dp"
@@ -39,6 +40,7 @@
                         IconRightWidget:
                             icon: "folder-outline"
                             on_release: root.file_manager_open()
+
 
 
         MDBoxLayout:
