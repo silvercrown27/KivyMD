@@ -92,6 +92,7 @@ class MainApp(MDApp):
         # Load the main screen
         self.wm = MainScreen()
         self.sound = None
+        self.current_music_bar = None
 
         # Create screens and add them to the WindowManager
         screens = [
@@ -114,7 +115,6 @@ class MainApp(MDApp):
         home_screen = homescreen.HomeScreen()
         home_screen.my_widgets(MDApp.get_running_app())
 
-
         # Return the main screen
         return self.wm
 
@@ -126,16 +126,27 @@ class MainApp(MDApp):
     def play_audio(self, media_dirs, curr_iter=0):
         if curr_iter >= len(media_dirs):
             curr_iter = 0
+
+        # Stop the currently playing song
         if self.sound:
             self.sound.stop()
+
         track = media_dirs[curr_iter]
         self.sound = SoundLoader.load(track)
+
         if self.sound:
             self.sound.play()
 
-        # Add MusicBar widget to all screens
-        for screen in self.wm.ids.WindowManager.screens[:-1]:
-            screen.ids.page_start.add_widget(MusicBar(track))
+        # Remove the existing MusicBar widget if it exists
+        if self.current_music_bar:
+            current_screen = self.wm.ids.WindowManager.current_screen
+            current_screen.ids.page_start.remove_widget(self.current_music_bar)
+
+        # Add MusicBar widget to the current screen
+        current_screen = self.wm.ids.WindowManager.current_screen
+        self.current_music_bar = MusicBar(track)
+        current_screen.ids.page_start.add_widget(self.current_music_bar)
+
         self.sound.bind(on_stop=lambda instance: self.play_audio(media_dirs, curr_iter + 1))
 
     def pause_music(self):

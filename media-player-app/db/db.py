@@ -1,10 +1,9 @@
-import sqlite3
 import os
+import sqlite3
 import psutil
 
 def create_database():
     mydb = sqlite3.connect("db.sqlite3")
-
     mycursor = mydb.cursor()
 
     mycursor.execute("""create table if not exists drives(
@@ -47,30 +46,32 @@ def create_database():
         total_size = psutil.disk_usage(partition.mountpoint).total
         mycursor.execute("INSERT INTO drives (name, size) VALUES (?, ?)", (drive, total_size / (1024 ** 3)))
 
-    # traverse directory tree and find all files
+    # Traverse directory tree and find all files in media and music directories
     for dirpath, dirnames, filenames in os.walk('/'):
         directories = os.path.normpath(dirpath).split(os.sep)
         parent_dir, current_dir = os.path.split(dirpath)
 
-        for dirname in dirnames:
-            dirid = mycursor.execute(
-                f"SELECT id FROM folders WHERE path='{parent_dir}' AND name='{directories[-1]}'")
-            dirid_row = dirid.fetchone()
-            dirid = None if dirid_row is None else dirid_row[0]
-            mycursor.execute("INSERT OR IGNORE INTO folders "
-                             "(name, path, folder_id) VALUES (?, ?, ?)", (dirname, dirpath, dirid))
+        # Check if the current directory name is either "media" or "music"
+        if os.path.basename(dirpath).lower() in ['media', 'music']:
+            for dirname in dirnames:
+                dirid = mycursor.execute(
+                    f"SELECT id FROM folders WHERE path='{parent_dir}' AND name='{directories[-1]}'")
+                dirid_row = dirid.fetchone()
+                dirid = None if dirid_row is None else dirid_row[0]
+                mycursor.execute("INSERT OR IGNORE INTO folders "
+                                 "(name, path, folder_id) VALUES (?, ?, ?)", (dirname, dirpath, dirid))
 
-        for filename in filenames:
-            file_path = os.path.join(dirpath, filename)
-            name = filename
-            ext = os.path.splitext(filename)[1]
-            size = get_file_size(file_path)
-            dirid = mycursor.execute(
-                f"SELECT id FROM folders WHERE path='{parent_dir}' AND name='{directories[-1]}'") or None
-            dirid_row = dirid.fetchone()
-            dirid = None if dirid_row is None else dirid_row[0]
-            mycursor.execute("INSERT INTO files (name, ext, size, path, folder_id) VALUES (?, ?, ?, ?, ?)",
-                             (name, ext, size, file_path, dirid))
+            for filename in filenames:
+                file_path = os.path.join(dirpath, filename)
+                name = filename
+                ext = os.path.splitext(filename)[1]
+                size = get_file_size(file_path)
+                dirid = mycursor.execute(
+                    f"SELECT id FROM folders WHERE path='{parent_dir}' AND name='{directories[-1]}'") or None
+                dirid_row = dirid.fetchone()
+                dirid = None if dirid_row is None else dirid_row[0]
+                mycursor.execute("INSERT INTO files (name, ext, size, path, folder_id) VALUES (?, ?, ?, ?, ?)",
+                                 (name, ext, size, file_path, dirid))
 
     def check_for_duplicates(table, column1, column2):
         data = mycursor.execute(f"SELECT {column1} FROM {table}")
